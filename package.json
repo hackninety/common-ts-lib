@@ -1,0 +1,92 @@
+{
+  "name": "nhx-ts-lib",
+  "version": "0.1.0",
+  "description": "倪海厦教学语料库 — 人纪五部讲稿、天纪十部、地纪、讲座、专题文章、959 篇医案、416 味本草、412 穴位、114 经方与人纪视频逐字稿的深度结构化 TypeScript 库（Ni Haixia TCM & Tianji corpus）",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./docs": {
+      "types": "./dist/docs.d.ts",
+      "import": "./dist/docs.js",
+      "default": "./dist/docs.js"
+    },
+    "./herbs": {
+      "types": "./dist/herbs.d.ts",
+      "import": "./dist/herbs.js",
+      "default": "./dist/herbs.js"
+    },
+    "./acupoints": {
+      "types": "./dist/acupoints.d.ts",
+      "import": "./dist/acupoints.js",
+      "default": "./dist/acupoints.js"
+    },
+    "./formulas": {
+      "types": "./dist/formulas.d.ts",
+      "import": "./dist/formulas.js",
+      "default": "./dist/formulas.js"
+    },
+    "./cases": {
+      "types": "./dist/cases.d.ts",
+      "import": "./dist/cases.js",
+      "default": "./dist/cases.js"
+    },
+    "./transcripts": {
+      "types": "./dist/transcripts.d.ts",
+      "import": "./dist/transcripts.js",
+      "default": "./dist/transcripts.js"
+    },
+    "./gua": {
+      "types": "./dist/gua.d.ts",
+      "import": "./dist/gua.js",
+      "default": "./dist/gua.js"
+    },
+    "./prompt": {
+      "types": "./dist/prompt.d.ts",
+      "import": "./dist/prompt.js",
+      "default": "./dist/prompt.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "INTEGRATION.md",
+    "docs/sources.md"
+  ],
+  "scripts": {
+    "ingest": "node scripts/ingest.mjs",
+    "gen": "node scripts/gen-data.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "nihaixia",
+    "倪海厦",
+    "人纪",
+    "天纪",
+    "中医",
+    "经方",
+    "伤寒论",
+    "金匮要略",
+    "黄帝内经",
+    "神农本草经",
+    "针灸",
+    "tcm",
+    "corpus"
+  ],
+  "license": "CC-BY-NC-4.0",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@vitest/ui": "^3.2.7",
+    "js-yaml": "^4.1.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0"
+  }
+}

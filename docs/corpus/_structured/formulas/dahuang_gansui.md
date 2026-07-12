@@ -1,0 +1,82 @@
+---
+title: "大黄甘遂汤"
+content_scope: "学习参考与资料检索，不作为诊断、处方、针灸操作或治疗建议"
+safety_disclaimer_required: true
+reviewer: "p17_content_quality"
+review_status: verified
+kind: "formula"
+source: "金匮要略"
+trace_status: verified
+source_refs:
+  - source_file: "05【视频同步文稿】人-金匮要略（可打印）.json"
+    page_num: 9
+    quote: "
+土瓜根散方
+大黄甘遂汤方
+抵当汤方
+矾石丸方
+红蓝花酒方
+肾气丸方
+蛇床子散方
+狼牙汤方
+猪膏发煎方
+阴阳易差后劳复第二十三
+烧裩散方
+补充处方
+梅毒解毒剂
+阿胶附子汤
+枳实栀子豉"
+---
+
+# 大黄甘遂汤
+
+<!-- P5_STANDARD_NOTICE_START -->
+
+## 学习与安全边界
+
+本条目用于中医学习、资料检索与来源追溯。内容不构成诊断、处方、用药、针灸操作或治疗建议；涉及剂量、配伍、禁忌、针药操作等内容时，必须由合格专业人士结合实际情况判断。
+
+## 来源追溯状态
+
+- 条目类型：方剂
+- 追溯状态：verified
+- 来源引用：见本文 frontmatter 中的 `source_refs`
+- 复核说明：P17 content quality verified.
+
+<!-- P5_STANDARD_NOTICE_END -->
+
+## 🌿 倪师讲解
+
+>
+
+> 土瓜根散方
+
+> 大黄甘遂汤方
+
+> 抵当汤方
+
+> 矾石丸方
+
+> 红蓝花酒方
+
+> 肾气丸方
+
+> 蛇床子散方
+
+> 狼牙汤方
+
+> 猪膏发煎方
+
+> 阴阳易差后劳复第二十三
+
+> 烧裩散方
+
+> 补充处方
+
+> 梅毒解毒剂
+
+> 阿胶附子汤
+
+> 枳实栀子豉
+
+---
