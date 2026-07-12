@@ -1,5 +1,6 @@
 {
  "issues": [
+  "源损字符照录（U+FFFD ×2）：zhuanti/ben/疫苗篇.md",
   "frontmatter 解析失败（按行回退）：_structured/herbs/baibu.md",
   "frontmatter 解析失败（按行回退）：_structured/herbs/baifan.md",
   "frontmatter 解析失败（按行回退）：_structured/herbs/baijiezi.md",

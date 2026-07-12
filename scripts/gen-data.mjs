@@ -26,7 +26,35 @@ mkdirSync(DATA, { recursive: true });
 mkdirSync(CHUNKS, { recursive: true });
 
 const textualIssues = [];
-const stats = { books: {}, cases: {}, transcripts: {}, structured: {}, gua: 0 };
+const stats = { books: {}, cases: {}, transcripts: {}, structured: {}, gua: 0, videos: 0 };
+
+/**
+ * 容错读取：底本应为 UTF-8；个别源文件为 GBK/Big5（如人纪班医案 txt 原为 GBK），
+ * UTF-8 严格解码失败时按 gb18030 → big5 回退并登记 textualIssue；
+ * 解码后仍含 U+FFFD 的（上游转录即损，如疫苗篇 2 处 Big5 断字）照录并登记。
+ */
+function readText(fullPath, label) {
+  const buf = readFileSync(fullPath);
+  let text;
+  try {
+    text = new TextDecoder('utf-8', { fatal: true }).decode(buf);
+  } catch {
+    for (const enc of ['gb18030', 'big5']) {
+      try {
+        text = new TextDecoder(enc, { fatal: true }).decode(buf);
+        textualIssues.push(`源文件非 UTF-8（按 ${enc} 解码）：${label}`);
+        break;
+      } catch { /* 试下一种 */ }
+    }
+    if (text === undefined) {
+      text = buf.toString('utf8');
+      textualIssues.push(`源文件编码不明（UTF-8 宽松解码，含替换符）：${label}`);
+    }
+  }
+  const fffd = (text.match(/�/g) ?? []).length;
+  if (fffd) textualIssues.push(`源损字符照录（U+FFFD ×${fffd}）：${label}`);
+  return text;
+}
 
 // ---------------------------------------------------------------- 注册表
 const R_NIVANCE = 'github:nivance/nihaixia-kb';
@@ -126,6 +154,16 @@ const TRANSCRIPT_BOOKS = [
   { book: 'bencao', title: '神农本草经·视频逐字稿', file: 'bencao_wenzi.json' },
   { book: 'shanghan', title: '伤寒论·视频逐字稿', file: 'shanghan_wenzi.json' },
   { book: 'jingui', title: '金匮要略·视频逐字稿', file: 'jkyl_wenzi.json' },
+];
+
+/** B 站视频索引（底本：汉唐中医网 hantang.org.cn 视频页快照 docs/corpus/_videos/） */
+const VIDEO_SERIES = [
+  { id: 'zhenjiu', title: '针灸大成', book: 'zhenjiu', page: 'https://www.hantang.org.cn/nihaixia/3598.html' },
+  { id: 'neijing', title: '黄帝内经', book: 'neijing', page: 'https://www.hantang.org.cn/nihaixia/3595.html' },
+  { id: 'bencao', title: '神农本草经', book: 'bencao', page: 'https://www.hantang.org.cn/nihaixia/3593.html' },
+  { id: 'shanghan', title: '伤寒论', book: 'shanghan', page: 'https://www.hantang.org.cn/nihaixia/3596.html' },
+  { id: 'jingui', title: '金匮要略', book: 'jingui', page: 'https://www.hantang.org.cn/nihaixia/3597.html' },
+  { id: 'tianji', title: '天纪', book: 'tianji', page: 'https://www.hantang.org.cn/nihaixia/3594.html' },
 ];
 
 // ---------------------------------------------------------------- 工具
@@ -268,7 +306,7 @@ for (const book of BOOKS) {
         order = major * 100 + (p.order === 500 ? 50 : p.order);
         subTitle = subPrefix.replace(/^第[一二三四五六七八九十]+部分[：:，、\s]*/, '');
       }
-      const { meta, body } = splitFrontmatter(readFileSync(path.join(dir, f), 'utf8'), `${book.slug}/${g.id}/${f}`);
+      const { meta, body } = splitFrontmatter(readText(path.join(dir, f), `${book.slug}/${g.id}/${f}`), `${book.slug}/${g.id}/${f}`);
       if (!body) { textualIssues.push(`空文档弃收：${book.slug}/${g.id}/${f}`); continue; }
       let title = cleanTitle(meta.title || p.rawTitle);
       if (subTitle) title = `${subTitle}·${title}`;
@@ -310,7 +348,7 @@ for (const g of CASE_GROUPS) {
   const entries = [];
   for (const f of files) {
     const p = parseName(f);
-    const { meta, body } = splitFrontmatter(readFileSync(path.join(dir, f), 'utf8'), `_cases/${g.id}/${f}`);
+    const { meta, body } = splitFrontmatter(readText(path.join(dir, f), `_cases/${g.id}/${f}`), `_cases/${g.id}/${f}`);
     if (!body) continue;
     let title = cleanTitle(meta.title || p.rawTitle);
     // 提要：来诊原因 / 首个正文行
@@ -352,7 +390,7 @@ function loadStructured(kind) {
   const out = [];
   for (const f of readDirFiles(dir)) {
     if (/index\.md$/i.test(f)) continue;
-    const { meta, body } = splitFrontmatter(readFileSync(path.join(dir, f), 'utf8'), `_structured/${kind}/${f}`);
+    const { meta, body } = splitFrontmatter(readText(path.join(dir, f), `_structured/${kind}/${f}`), `_structured/${kind}/${f}`);
     const id = f.replace(/\.md$/i, '');
     const name = cleanTitle(meta.title || id);
     if (!name || /^[a-z_]+$/.test(name)) { textualIssues.push(`结构化条目缺中文名弃收：${kind}/${f}`); continue; }
@@ -502,13 +540,40 @@ for (const e of manifest) {
   for (const f of readDirFiles(dir)) {
     const m = f.match(/^(\d+)\.(.+?)([䷀-䷿])?\.md$/);
     if (!m) { textualIssues.push(`64卦文件名不合式：${f}`); continue; }
-    const { body } = splitFrontmatter(readFileSync(path.join(dir, f), 'utf8'), `_gua64/${f}`);
+    const { body } = splitFrontmatter(readText(path.join(dir, f), `_gua64/${f}`), `_gua64/${f}`);
     gua.push({ no: Number(m[1]), name: m[2].trim(), symbol: m[3] ?? '', md: body });
   }
   gua.sort((a, b) => a.no - b.no);
   jsonOut('gua64.json', { gua });
   chunkModule('gua64', 'gua64.json', '天纪 64 卦详解载荷');
   stats.gua = gua.length;
+}
+
+// ---------------------------------------------------------------- B 站视频索引
+{
+  const series = [];
+  for (const vs of VIDEO_SERIES) {
+    const p = path.join(CORPUS, '_videos', `${vs.id}.html`);
+    if (!existsSync(p)) { textualIssues.push(`缺视频底本：_videos/${vs.id}.html`); continue; }
+    const html = readText(p, `_videos/${vs.id}.html`);
+    const eps = [];
+    const seen = new Set();
+    const re = /<a\b[^>]*href="https?:\/\/www\.bilibili\.com\/video\/(BV[0-9A-Za-z]{10})\/?"[^>]*>([\s\S]*?)<\/a>/g;
+    let m;
+    while ((m = re.exec(html))) {
+      const bv = m[1];
+      if (seen.has(bv)) continue;
+      seen.add(bv);
+      const title = m[2].replace(/<[^>]+>/g, '').replace(/&nbsp;|&#160;/g, ' ').replace(/\s+/g, ' ').trim();
+      const nm = title.match(/(\d+)\s*$/);
+      eps.push({ n: nm ? Number(nm[1]) : eps.length + 1, title: title || `${vs.title} ${eps.length + 1}`, bv });
+    }
+    eps.sort((a, b) => a.n - b.n || a.bv.localeCompare(b.bv));
+    if (!eps.length) textualIssues.push(`视频页无 B 站链接：_videos/${vs.id}.html`);
+    series.push({ id: vs.id, title: vs.title, book: vs.book, page: vs.page, episodes: eps });
+    stats.videos += eps.length;
+  }
+  jsonOut('videos.json', { collectedAt: '2026-07-13', source: '汉唐中医网 hantang.org.cn 视频页快照', series });
 }
 
 // ---------------------------------------------------------------- 注册表 / 统计
@@ -524,5 +589,5 @@ writeFileSync(path.join(DATA, 'textual-issues.json'), JSON.stringify({ issues: t
 
 console.log(`gen ok: ${manifest.length} docs / ${caseIndex.length} cases / ` +
   `${stats.structured.herbs} herbs / ${stats.structured.acupoints} acupoints / ${stats.structured.formulas} formulas / ` +
-  `${Object.values(stats.transcripts).reduce((a, b) => a + b, 0)} transcript paras / ${stats.gua} gua`);
+  `${Object.values(stats.transcripts).reduce((a, b) => a + b, 0)} transcript paras / ${stats.gua} gua / ${stats.videos} video eps`);
 if (textualIssues.length) console.log(`textualIssues: ${textualIssues.length}（见 src/data/textual-issues.json）`);

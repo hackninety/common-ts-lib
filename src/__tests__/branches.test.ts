@@ -5,6 +5,7 @@ import { getFormulas, getFormula, findFormulas, getFormulasBySource } from '../f
 import { getCaseGroups, getCaseIndex, getCaseMarkdown, findCases, searchCasesFull } from '../cases';
 import { getTranscriptBooks, loadTranscriptBook, getTranscriptChapter, searchTranscripts } from '../transcripts';
 import { getGua64, findGua, searchGua } from '../gua';
+import { getVideoSeries, getVideoSeriesFor, bilibiliUrl } from '../videos';
 import { citeDoc, buildTranscriptContext } from '../prompt';
 
 describe('中药', () => {
@@ -75,6 +76,14 @@ describe('医案', () => {
     expect(md!.length).toBeGreaterThan(100);
   });
 
+  it('人纪班医案（GBK 源）转码后无替换符', async () => {
+    const md = await getCaseMarkdown('renjiban/001');
+    expect(md).toContain('人紀班');
+    expect(md!.includes('�')).toBe(false);
+    // 全索引不含替换符（防再引入非 UTF-8 源）
+    expect(JSON.stringify(getCaseIndex()).includes('�')).toBe(false);
+  });
+
   it('日志组为倪师亲笔且带日期；索引检索/全文检索可用', async () => {
     const groups = getCaseGroups();
     expect(groups.find((g) => g.id === 'riji2005')?.fidelity).toBe('first-party');
@@ -115,6 +124,22 @@ describe('64 卦', () => {
     const lu = await findGua('天泽履');
     expect(lu!.no).toBe(10);
     expect((await searchGua('小畜')).length).toBeGreaterThan(0);
+  });
+});
+
+describe('视频索引', () => {
+  it('6 系列 139 集，BV 形制与书目互链正确', () => {
+    const s = getVideoSeries();
+    expect(s.length).toBe(6);
+    expect(s.reduce((a, x) => a + x.episodes.length, 0)).toBe(139);
+    expect(s.find((x) => x.id === 'zhenjiu')!.episodes.length).toBe(44);
+    expect(s.find((x) => x.id === 'tianji')!.episodes.length).toBe(24);
+    for (const x of s) {
+      expect(x.page).toContain('hantang.org.cn');
+      for (const e of x.episodes) expect(e.bv).toMatch(/^BV[0-9A-Za-z]{10}$/);
+    }
+    expect(getVideoSeriesFor('shanghan')!.episodes[0].title).toContain('伤寒论');
+    expect(bilibiliUrl('BV1wH4y1j7GD')).toBe('https://www.bilibili.com/video/BV1wH4y1j7GD/');
   });
 });
 

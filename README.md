@@ -23,6 +23,7 @@
 | 方剂 formulas | 113 首经方（出处/分类 + 原文引用） | third-party 结构化 | qmzz/ni-haisha-tcm-skill |
 | 逐字稿 transcripts | 人纪五部 6486 段（书/章/段三级，RAG 就绪） | transcript | wesky-online/zhongli_data |
 | 64 卦 gua | 天纪人间道 64 卦详解 | lecture-notes | wh149728915-stack/nihaixia-64gua |
+| 视频 videos | B 站直链索引 6 系列 139 集（人纪五部 + 天纪，仅链接与标题） | — | hantang.org.cn 视频页快照 |
 
 每篇文档/条目携带 `fidelity` 保真度标签：
 `first-party` 倪师亲笔 ｜ `lecture-notes` 听课整理稿 ｜ `transcript` 逐字稿 ｜
@@ -81,6 +82,11 @@ buildTranscriptContext(hits);                 // → 带出处/保真度声明�
 // 天纪 64 卦
 import { findGua } from 'nhx-ts-lib/gua';
 await findGua('天泽履'); // { no: 10, symbol: '䷉', md: 详解全文 }
+
+// B 站视频索引（同步轻量）
+import { getVideoSeries, getVideoSeriesFor, bilibiliUrl } from 'nhx-ts-lib/videos';
+getVideoSeriesFor('shanghan'); // { title:'伤寒论', episodes:[{ n:1, title:'倪海厦《伤寒论》01', bv:'BV…' }…] }
+bilibiliUrl('BV1wH4y1j7GD');   // https://www.bilibili.com/video/BV1wH4y1j7GD/
 ```
 
 React 宿主接入（Vite/Next、抽屉分组、RAG 组装）见 [INTEGRATION.md](INTEGRATION.md)。

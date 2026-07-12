@@ -9,6 +9,7 @@
  *   nhx-ts-lib/cases       医案 959 篇（诊疗日志/神州医料库编档，分组分包）
  *   nhx-ts-lib/transcripts 人纪视频逐字稿 6486 段（书/章/段，RAG 就绪）
  *   nhx-ts-lib/gua         天纪 64 卦详解
+ *   nhx-ts-lib/videos      B 站视频索引（6 系列 139 集，人纪五部 + 天纪）
  *   nhx-ts-lib/prompt      RAG 出处/提示块组装
  */
 export type {

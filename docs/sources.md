@@ -4,6 +4,12 @@
 共发现约 55 个相关仓库。按取用情况分类如下；已收录仓库的 commit 锁定见
 `docs/corpus/_meta/sources.json` 与运行时 `getSources()`。
 
+## 〇、站点采集（视频索引底本）
+
+| 来源 | 取用 | 说明 |
+|---|---|---|
+| [汉唐中医网](https://www.hantang.org.cn/nihaixia/)（hantang.org.cn） | 视频页 3593–3598 快照 → `docs/corpus/_videos/` | 人纪五部 + 天纪的 Bilibili 直链索引（6 系列 139 集，2026-07-13 采集）；本库仅收录链接与集名，视频内容归 B 站上传者与权利人 |
+
 ## 一、已收录（5 个，语料底本）
 
 | 仓库 | 星 | 取用 | 说明 |
