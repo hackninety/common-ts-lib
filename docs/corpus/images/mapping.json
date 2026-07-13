@@ -11,7 +11,8 @@
     "guangzhu": {"title": "山海經廣注 吳任臣圖本", "titleSimp": "山海经广注 吴任臣图本", "era": "清康熙六年（1667）", "artist": "吳任臣", "country": "中国"},
     "qing": {"title": "清刊本山海經圖（版本未詳）", "titleSimp": "清刊本山海经图（版本未详）", "era": "清", "artist": "佚名", "country": "中国"},
     "jinzhang": {"title": "山海經圖說（民初石印本）", "titleSimp": "山海经图说（民初石印本）", "era": "民國初年（1930 年前）", "artist": "佚名", "country": "中国"},
-    "sekien": {"title": "今昔百鬼拾遺", "titleSimp": "今昔百鬼拾遗", "era": "日本安永十年（1781）", "artist": "鳥山石燕", "country": "日本"}
+    "sekien": {"title": "今昔百鬼拾遺", "titleSimp": "今昔百鬼拾遗", "era": "日本安永十年（1781）", "artist": "鳥山石燕", "country": "日本"},
+    "hanhua": {"title": "漢畫像石", "titleSimp": "汉画像石", "era": "漢（前202–220）", "artist": "佚名（沂南漢墓／武氏祠石刻）", "country": "中国"}
   },
   "images": [
     {"id":"shengsheng-chz","entity":"shengsheng","collection":"chz","commons":"File:Shahaijing-chongzhen(1628–1644)-nanshanjing1-fol1b-shengsheng.jpg","title":"狌狌"},
@@ -241,6 +242,29 @@
     {"id":"xiahoukai-tushu","entity":"xiahoukai","collection":"tushu","commons":"File:Imperial Encyclopaedia - Spirits and the Supernatural - pic58 - 夏后開神圖.svg","title":"夏后開神圖"},
     {"id":"jiufeng-qingcai","entity":"jiufeng","collection":"qingcai","commons":"File:Nine-headed phoenix, from a color edition of Shan Hai Jing.jpg","title":"九鳳（清彩繪本）"},
     {"id":"jiufeng-tushu","entity":"jiufeng","collection":"tushu","commons":"File:Imperial Encyclopaedia - Spirits and the Supernatural - pic59 - 九鳳神圖.svg","title":"九鳳神圖"},
-    {"id":"qiangliang-tushu","entity":"qiangliang","collection":"tushu","commons":"File:Imperial Encyclopaedia - Spirits and the Supernatural - pic60 - 彊良神圖.svg","title":"彊良神圖"}
+    {"id":"qiangliang-tushu","entity":"qiangliang","collection":"tushu","commons":"File:Imperial Encyclopaedia - Spirits and the Supernatural - pic60 - 彊良神圖.svg","title":"彊良神圖"},
+    {"id":"shangao-tushu","entity":"shangao","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic302 - 山膏圖.svg","title":"山膏圖"},
+    {"id":"longchi-tushu","entity":"longchi","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic296 - 蠪蚳圖.svg","title":"蠪蚳圖"},
+    {"id":"xiubiyu-tushu","entity":"xiubiyu","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic428 - 脩辟魚圖.svg","title":"脩辟魚圖"},
+    {"id":"yingshao-tushu","entity":"yingshao","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic139 - 嬰勺圖.svg","title":"嬰勺圖"},
+    {"id":"qinggeng-tushu","entity":"qinggeng","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic140 - 青耕圖.svg","title":"青耕圖"},
+    {"id":"juru-tushu","entity":"juru","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic309 - 狙如圖.svg","title":"狙如圖"},
+    {"id":"liangqu-tushu","entity":"liangqu","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic311 - 梁渠圖.svg","title":"梁渠圖"},
+    {"id":"gui-beast-tushu","entity":"gui-beast","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic313 - 蛫圖.svg","title":"蛫圖"},
+    {"id":"qiezhi-tushu","entity":"qiezhi","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic137 - 竊脂圖.svg","title":"竊脂圖"},
+    {"id":"migu-wang","entity":"migu","collection":"wang","commons":"File:Wang fu(1895)-shanhaijingcun1-fol5amigu-confusionmulberry.png","title":"迷穀"},
+    {"id":"fusang-tushu","entity":"fusang","collection":"tushu","commons":"File:Imperial Encyclopaedia - Borders - pic016 - 扶桑國.svg","title":"扶桑國"},
+    {"id":"taifeng-tushu","entity":"taifeng","collection":"tushu","commons":"File:Imperial Encyclopaedia - Spirits and the Supernatural - pic30 - 太逢神圖.svg","title":"太逢神圖"},
+    {"id":"yanwei-tushu","entity":"yanwei","collection":"tushu","commons":"File:Imperial Encyclopaedia - Spirits and the Supernatural - pic62 - 延維神圖.svg","title":"延維神圖"},
+    {"id":"changsheng-tushu","entity":"changsheng","collection":"tushu","commons":"File:Imperial Encyclopaedia - Spirits and the Supernatural - pic17 - 長乘神圖.svg","title":"長乘神圖"},
+    {"id":"yanzi-tushu","entity":"yanzi","collection":"tushu","commons":"File:Imperial Encyclopaedia - Spirits and the Supernatural - pic08 - 弇茲神圖.svg","title":"弇茲神圖"},
+    {"id":"xuangu-tushu","entity":"xuangu","collection":"tushu","commons":"File:Imperial Encyclopaedia - Borders - pic021 - 元股國.svg","title":"元股國（玄股國，避清諱）"},
+    {"id":"bofu-tushu","entity":"bofu","collection":"tushu","commons":"File:Imperial Encyclopaedia - Borders - pic186 - 博父國.svg","title":"博父國"},
+    {"id":"congcong-tushu","entity":"congcong","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic280 - 從從圖.svg","title":"從從圖"},
+    {"id":"longzhi-tushu","entity":"longzhi","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic286 - 蠪姪圖.svg","title":"蠪姪圖"},
+    {"id":"yao-bird-tushu","entity":"yao-bird","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic134 - 鴢鳥圖.svg","title":"鴢鳥圖"},
+    {"id":"fuxi-tushu","entity":"fuxi","collection":"tushu","commons":"File:Imperial Encyclopaedia - Animal Kingdom - pic107 - 鳧徯圖.svg","title":"鳧徯圖"},
+    {"id":"chiyou-hanhua","entity":"chiyou","collection":"hanhua","commons":"File:山东省沂南县 汉画像石 蚩尤五兵.jpg","title":"蚩尤五兵圖（沂南漢墓）"},
+    {"id":"chiyou-hanhua2","entity":"chiyou","collection":"hanhua","commons":"File:Chi You Rubbing Wu family shrines Han.jpg","title":"蚩尤（武氏祠畫像石拓片）"}
   ]
 }

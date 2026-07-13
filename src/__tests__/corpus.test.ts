@@ -8,7 +8,8 @@ import { getChapterEntries, searchText } from '../text';
 import { getEntitiesIndex, getEntity, findEntities, getEntitiesByLocation } from '../entities';
 import { getLocations, getLocation } from '../locations';
 import { getImages, getImagesByEntity, getCollections } from '../images';
-import { entitiesToGeoJSON, locationsToGeoJSON } from '../geo';
+import { entitiesToGeoJSON, locationsToGeoJSON, riversToGeoJSON } from '../geo';
+import { getRivers, getRiversByLocation, findRivers } from '../rivers';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
@@ -42,7 +43,7 @@ describe('经文', () => {
 describe('实体百科', () => {
   it('实体量与必填字段', () => {
     const idx = getEntitiesIndex();
-    expect(idx.length).toBeGreaterThanOrEqual(150);
+    expect(idx.length).toBeGreaterThanOrEqual(220);
     for (const e of idx) {
       expect(e.name, e.id).toBeTruthy();
       expect(e.pinyin, e.id).toBeTruthy();
@@ -126,10 +127,65 @@ describe('古图', () => {
     }
   });
 
-  it('有图实体覆盖率 ≥ 80%', () => {
+  it('有图实体覆盖率 ≥ 72%（植物/矿物类多无古图可觅）', () => {
     const idx = getEntitiesIndex();
     const withImg = idx.filter((e) => e.imageCount > 0).length;
-    expect(withImg / idx.length).toBeGreaterThanOrEqual(0.8);
+    expect(withImg / idx.length).toBeGreaterThanOrEqual(0.72);
+  });
+});
+
+describe('水系', () => {
+  it('解析量与锚定质量', () => {
+    const rivers = getRivers();
+    expect(rivers.length).toBeGreaterThan(250);
+    expect(rivers.filter((r) => r.locationId).length).toBeGreaterThan(70);
+    for (const r of rivers) {
+      expect(r.name.endsWith('水'), r.name).toBe(true);
+      expect(r.chapter).toBeTruthy();
+    }
+  });
+
+  it('名例：漳水出发鸠山注于河；邽山出蒙水', () => {
+    const zhang = findRivers('漳水').find((r) => r.locationId === 'fajiu')!;
+    expect(zhang.dest).toBe('河');
+    expect(zhang.dir).toBe('东');
+    const meng = getRiversByLocation('guishan');
+    expect(meng.map((r) => r.name)).toContain('蒙水');
+  });
+
+  it('GeoJSON 示意线：坐标合法，属性带 label', () => {
+    const fc = riversToGeoJSON();
+    expect(fc.features.length).toBeGreaterThan(70);
+    for (const f of fc.features) {
+      expect(f.geometry.type).toBe('LineString');
+      expect(f.geometry.coordinates.length).toBe(2);
+      for (const [lng, lat] of f.geometry.coordinates) {
+        expect(Math.abs(lat)).toBeLessThanOrEqual(90);
+        expect(Math.abs(lng)).toBeLessThanOrEqual(180);
+      }
+      expect(f.properties.label).toContain(f.properties.name);
+    }
+  });
+});
+
+describe('新增分支：神木灵草/矿藏/中山经补录', () => {
+  it('plant/mineral 类目成型', () => {
+    const idx = getEntitiesIndex();
+    expect(idx.filter((e) => e.category === 'plant').length).toBeGreaterThanOrEqual(14);
+    expect(idx.filter((e) => e.category === 'mineral').length).toBeGreaterThanOrEqual(5);
+  });
+
+  it('瑶草（帝女所化）与帝女桑可检索、有地望', async () => {
+    expect(findEntities('瑶草')[0]?.id).toBe('yaocao');
+    const yc = await getEntity('yaocao');
+    expect(yc!.occurrences[0].quoteTrad).toContain('帝女');
+    expect(getLocation(yc!.locationId!)).toBeTruthy();
+    expect(findEntities('帝女桑').map((e) => e.id)).toContain('dinvsang');
+  });
+
+  it('中山经实体密度提升', () => {
+    const zs = getEntitiesIndex().filter((e) => e.chapter === 'zhongshan');
+    expect(zs.length).toBeGreaterThanOrEqual(40);
   });
 });
 

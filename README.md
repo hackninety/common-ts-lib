@@ -1,6 +1,6 @@
 # shj-ts-lib —— 《山海经》语料库
 
-十八卷经文（繁/简对照、逐条结构化）、**183 个实体百科**（异兽/奇鸟/鳞介/蛇虺/龙属/神祇/奇人/方国/神木）、**120 处山川地望坐标**（今地考据 + 置信度分级）、**220+ 幅历代名家古图**（明蒋应镐绘图本、明胡文焕本、清汪绂本、《古今图书集成》、日本《怪奇鳥獣図巻》、鸟山石燕等，全部公有领域）的深度结构化 TypeScript 库。
+十八卷经文（繁/简对照、逐条结构化）、**226 个实体百科**（异兽/奇鸟/鳞介/蛇虺/龙属/神祇/奇人/方国/神木/灵石）、**188 处山川地望坐标**（今地考据 + 置信度分级）、**269 条水系记录**（自动解析「X水出焉注于Y」）、**251 幅历代名家古图**（明蒋应镐绘图本、明胡文焕本、清汪绂本、《古今图书集成》、日本《怪奇鳥獣図巻》、汉画像石等，全部公有领域）的深度结构化 TypeScript 库。
 
 为地图 + 百科类宿主（如 react-shj）设计：**实体索引/地望坐标同步可用，经文与实体正文按需分包懒加载，GeoJSON 一行导出**。
 
@@ -13,10 +13,11 @@ npm install github:hackninety/shj-ts-lib
 | 分支 | 规模 | 加载方式 |
 |---|---|---|
 | `shj-ts-lib/text` | 十八卷 839 条 3.8 万字，繁简对照 | 卷目同步；正文按卷 18 个 chunk |
-| `shj-ts-lib/entities` | 183 个实体：原文引文（底本逐字校验）+ 白话简介 + 特性标签 | 索引同步；正文 1 个 chunk |
-| `shj-ts-lib/locations` | 120 处地望：坐标 + 今地 + 考据依据 + 置信度 | 同步 |
-| `shj-ts-lib/images` | 220+ 幅古图元数据；文件在包内 `assets/images/` | 元数据同步 |
-| `shj-ts-lib/geo` | 实体/地望 → GeoJSON FeatureCollection | 同步 |
+| `shj-ts-lib/entities` | 226 个实体：原文引文（底本逐字校验）+ 白话简介 + 特性标签 | 索引同步；正文 1 个 chunk |
+| `shj-ts-lib/locations` | 188 处地望：坐标 + 今地 + 考据依据 + 置信度 | 同步 |
+| `shj-ts-lib/rivers` | 269 条水系：河名/源山/流向/注入（73 条已锚定坐标） | 同步 |
+| `shj-ts-lib/images` | 251 幅古图元数据；文件在包内 `assets/images/` | 元数据同步 |
+| `shj-ts-lib/geo` | 实体/地望/水系 → GeoJSON | 同步 |
 
 ## 快速上手
 
@@ -40,6 +41,17 @@ getImagesByEntity('qiongqi');// 汪绂本 + 图书集成 两幅古图（含出�
 // 搜索（繁简折叠，同步，适合 onChange）
 findEntities('九尾狐');
 findEntities('饕餮');        // 别名命中 → 狍鸮
+```
+
+## 水系（自动解析，语料可溯源）
+
+```ts
+import { getRivers, getRiversByLocation, findRivers } from 'shj-ts-lib/rivers';
+import { riversToGeoJSON } from 'shj-ts-lib/geo';
+
+getRiversByLocation('fajiu');   // 发鸠山：漳水，东流注于河（精卫填海的漳水源头）
+findRivers('渭');               // 注于渭水的诸源
+riversToGeoJSON();              // 73 条 LineString 流向示意线（方向取自经文，长度非实际河道）
 ```
 
 ## 经文语料

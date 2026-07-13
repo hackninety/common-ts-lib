@@ -1,9 +1,11 @@
-/** 地理分支：实体/地望 → GeoJSON，直接喂给 Leaflet / MapLibre / ECharts geo */
+/** 地理分支：实体/地望/水系 → GeoJSON，直接喂给 Leaflet / MapLibre / ECharts geo */
 import { getEntitiesIndex } from './entities';
 import { getLocations } from './locations';
+import { getRivers } from './rivers';
 import type {
   EntityCategory, EntityFeatureProps, GeoFeature, GeoFeatureCollection,
-  Location, LocationConfidence, LocationFeatureProps,
+  GeoLineFeature, GeoLineFeatureCollection, Location, LocationConfidence,
+  LocationFeatureProps, RiverFeatureProps,
 } from './types';
 
 export interface EntityGeoOptions {
@@ -71,6 +73,56 @@ export interface LocationGeoOptions {
   confidence?: LocationConfidence[];
   /** 只要有实体入驻的地望 */
   withEntitiesOnly?: boolean;
+}
+
+/** 流向 → 单位向量（经文八方；未言流向时朝正北微偏，仅作示意） */
+const DIR_VECTORS: Record<string, [number, number]> = {
+  东: [1, 0], 西: [-1, 0], 南: [0, -1], 北: [0, 1],
+  东南: [0.71, -0.71], 东北: [0.71, 0.71], 西南: [-0.71, -0.71], 西北: [-0.71, 0.71],
+};
+
+export interface RiverGeoOptions {
+  chapters?: string[];
+  /** 示意线长度（度），默认 0.9 */
+  length?: number;
+}
+
+/**
+ * 水系 → GeoJSON 短线要素集：自源头山坐标沿经文所记流向画一段示意线
+ * （方向取自经文，长度非实际河道——诚实的「流向注记」而非水文复原）。
+ * 仅包含源头山已有坐标的记录；全部记录用 `shj-ts-lib/rivers` 取。
+ */
+export function riversToGeoJSON(
+  opts: RiverGeoOptions = {},
+): GeoLineFeatureCollection<RiverFeatureProps> {
+  const len = opts.length ?? 0.9;
+  const locById = new Map(getLocations().map((l) => [l.id, l]));
+  const features: GeoLineFeature<RiverFeatureProps>[] = [];
+  for (const r of getRivers()) {
+    if (!r.locationId) continue;
+    if (opts.chapters && !opts.chapters.includes(r.chapter)) continue;
+    const loc = locById.get(r.locationId);
+    if (!loc) continue;
+    const [dx, dy] = DIR_VECTORS[r.dir] ?? [0.2, 0.4];
+    const from: [number, number] = [loc.lng, loc.lat];
+    const to: [number, number] = [
+      Number((loc.lng + dx * len).toFixed(4)),
+      Number((loc.lat + dy * len * 0.75).toFixed(4)),
+    ];
+    const label =
+      `${r.name} · 出${r.mountain}` +
+      (r.dir ? ` · ${r.dir}流` : '') +
+      (r.dest ? `注于${r.dest}` : '');
+    features.push({
+      type: 'Feature',
+      geometry: { type: 'LineString', coordinates: [from, to] },
+      properties: {
+        name: r.name, chapter: r.chapter, mountain: r.mountain,
+        locationId: r.locationId, dir: r.dir, dest: r.dest, label,
+      },
+    });
+  }
+  return { type: 'FeatureCollection', features };
 }
 
 /** 地望 → GeoJSON 要素集（山/川/国一点一名，适合底层图层） */

@@ -5,15 +5,17 @@
  *   shj-ts-lib/text       十八卷经文（839 条，繁简对照，卷目同步 + 按卷分包）
  *   shj-ts-lib/entities   实体百科（异兽/神祇/方国…，索引同步 + 正文分包）
  *   shj-ts-lib/locations  山川地望（坐标 + 今地考据 + 置信度，同步）
+ *   shj-ts-lib/rivers     水系（自经文自动解析的「出焉—注于」记录，同步）
  *   shj-ts-lib/images     历代古图元数据（文件在包内 assets/images，同步）
- *   shj-ts-lib/geo        实体/地望 → GeoJSON（地图直接可用）
+ *   shj-ts-lib/geo        实体/地望/水系 → GeoJSON（地图直接可用）
  */
 export type {
   Book, ChapterInfo, TextEntry,
   EntityCategory, EntityIndexItem, EntityOccurrence, Entity,
-  LocationType, LocationConfidence, Location,
+  LocationType, LocationConfidence, Location, River,
   ImageCollection, ImageMeta, CorpusStats,
   GeoPoint, GeoFeature, GeoFeatureCollection, EntityFeatureProps, LocationFeatureProps,
+  GeoLineString, GeoLineFeature, GeoLineFeatureCollection, RiverFeatureProps,
 } from './types';
 
 export {

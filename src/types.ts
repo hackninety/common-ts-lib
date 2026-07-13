@@ -140,6 +140,26 @@ export interface ImageMeta {
   bytes: number;
 }
 
+/** 水系记录（生成管线自经文自动解析，锚定条目可溯源） */
+export interface River {
+  /** 河名（简体，如「漳水」「丽𪊨之水」） */
+  name: string;
+  /** 出处卷 slug */
+  chapter: string;
+  /** 卷内条目序号 */
+  entry: number;
+  /** 源头山（条目主名，简体） */
+  mountain: string;
+  /** 源头山对应地望 id（可取坐标；未收录的山为 null） */
+  locationId: string | null;
+  /** 出于「其阳/其阴/其上」等方位（「出焉」为空） */
+  source: string;
+  /** 流向（东/南/西南…，经文未言则空） */
+  dir: string;
+  /** 注入水体（如「河」「渭」「具区」；「（潜行地下）」表潜流） */
+  dest: string;
+}
+
 export interface CorpusStats {
   chapters: number;
   entries: number;
@@ -147,6 +167,7 @@ export interface CorpusStats {
   entities: number;
   locations: number;
   images: number;
+  rivers: number;
   foldPairs: number;
 }
 
@@ -182,6 +203,34 @@ export interface EntityFeatureProps {
   confidence: LocationConfidence;
   /** 主图 id（null 为无图实体） */
   image: string | null;
+}
+
+/** 水系地图要素属性（LineString：自源头山沿经文流向的示意线） */
+export interface RiverFeatureProps {
+  name: string;
+  chapter: string;
+  mountain: string;
+  locationId: string;
+  dir: string;
+  dest: string;
+  /** 展示语句，如「漳水 · 出发鸠之山 · 东流注于河」 */
+  label: string;
+}
+
+/** GeoJSON LineString（最小子集） */
+export interface GeoLineString {
+  type: 'LineString';
+  /** [[lng,lat], …] */
+  coordinates: [number, number][];
+}
+export interface GeoLineFeature<P> {
+  type: 'Feature';
+  geometry: GeoLineString;
+  properties: P;
+}
+export interface GeoLineFeatureCollection<P> {
+  type: 'FeatureCollection';
+  features: GeoLineFeature<P>[];
 }
 
 /** 地望地图要素属性 */

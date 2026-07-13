@@ -274,6 +274,44 @@ writeChunk('entities-bodies', `实体百科正文载荷（${entIndex.length} 条
 writeJson('locations.json', locOut);
 writeJson('images.json', { collections, images });
 
+// ---------- 4.5 水系（自动解析「X水出焉，……注于Y」） ----------
+const RIVER_RE =
+  /(?<=[。，；、：])([^，。；、：（）]{1,8}?水)出(焉|于其[阳阴上下首尾阴阳]{1,2}|于[^，。；、]{1,6})[，、]?(?:而)?([东南西北]{0,4})?流?[，、]?(?:(?:东南|西南|东北|西北|[东南西北])?流?注于([^。，；、：]{1,12})|(潜于其下))?/g;
+
+const rivers = [];
+const locByName = new Map();
+for (const l of locations) {
+  const norm = (s) => s.replace(/[之山丘渊臺台（）()]/g, '');
+  locByName.set(norm(l.nameSimp), l.id);
+  locByName.set(norm(l.name), l.id);
+}
+for (const ch of CHAPTERS) {
+  const entries = chapterEntries.get(ch.slug);
+  if (!entries) continue;
+  for (const e of entries) {
+    const text = '。' + e.s;
+    for (const m of text.matchAll(RIVER_RE)) {
+      const [, name, src, dir, dest, qian] = m;
+      // 排除「是多水/无水/多水玉」等非河名误匹配
+      if (/^[是于有其无多不可上下中]/.test(name) || name === '水') continue;
+      const riverName = name.replace(/^之/, '');
+      const mountain = e.headSimp;
+      const locId = locByName.get(mountain.replace(/[之山丘渊]/g, '')) ?? null;
+      rivers.push({
+        name: riverName,
+        chapter: ch.slug,
+        entry: e.i,
+        mountain,
+        locationId: locId,
+        source: src === '焉' ? '' : src.replace(/^于/, ''),
+        dir: dir || '',
+        dest: dest ? dest.replace(/之水$/, '') : (qian ? '（潜行地下）' : ''),
+      });
+    }
+  }
+}
+writeJson('rivers.json', rivers);
+
 // ---------- 5. 繁简折叠表（语料实际用字） ----------
 const foldPairs = [];
 const seenChar = new Set();
@@ -294,7 +332,7 @@ writeJson('fold.json', foldPairs);
 writeJson('stats.json', {
   chapters: chapterIndex.length, entries: totalEntries, chars: totalChars,
   entities: entIndex.length, locations: locOut.length, images: images.length,
-  foldPairs: foldPairs.length,
+  rivers: rivers.length, foldPairs: foldPairs.length,
 });
 
 // ---------- 汇报 ----------
@@ -306,5 +344,6 @@ if (errors.length) {
 }
 console.log(
   `gen ok: ${chapterIndex.length} 卷 ${totalEntries} 条 ${totalChars} 字；` +
-  `实体 ${entIndex.length}，地望 ${locOut.length}，图像 ${images.length}，折叠 ${foldPairs.length} 对`,
+  `实体 ${entIndex.length}，地望 ${locOut.length}，图像 ${images.length}，` +
+  `水系 ${rivers.length}（锚定 ${rivers.filter((r) => r.locationId).length}），折叠 ${foldPairs.length} 对`,
 );
