@@ -1,0 +1,75 @@
+{
+  "name": "shj-ts-lib",
+  "version": "0.1.0",
+  "description": "《山海经》语料库 — 十八卷经文（繁/简对照、逐条结构化）、异兽/神祇/国族百科、山川地望坐标、历代名家古图（明·蒋应镐绘图本、日·怪奇鳥獣図巻等）的深度结构化 TypeScript 库（Shan Hai Jing corpus）",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./text": {
+      "types": "./dist/text.d.ts",
+      "import": "./dist/text.js",
+      "default": "./dist/text.js"
+    },
+    "./entities": {
+      "types": "./dist/entities.d.ts",
+      "import": "./dist/entities.js",
+      "default": "./dist/entities.js"
+    },
+    "./locations": {
+      "types": "./dist/locations.d.ts",
+      "import": "./dist/locations.js",
+      "default": "./dist/locations.js"
+    },
+    "./images": {
+      "types": "./dist/images.d.ts",
+      "import": "./dist/images.js",
+      "default": "./dist/images.js"
+    },
+    "./geo": {
+      "types": "./dist/geo.d.ts",
+      "import": "./dist/geo.js",
+      "default": "./dist/geo.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "README.md",
+    "INTEGRATION.md",
+    "docs/sources.md"
+  ],
+  "scripts": {
+    "fetch:text": "node scripts/fetch-text.mjs",
+    "fetch:images": "node scripts/fetch-images.mjs",
+    "gen": "node scripts/gen-data.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "shanhaijing",
+    "山海经",
+    "山海經",
+    "异兽",
+    "神话",
+    "上古",
+    "corpus",
+    "mythology",
+    "chinese-classics",
+    "geojson"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "opencc-js": "^1.0.5",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0"
+  }
+}

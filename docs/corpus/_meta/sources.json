@@ -1,0 +1,10 @@
+{
+  "text": {
+    "provider": "ctext.org（中國哲學書電子化計劃）",
+    "api": "https://api.ctext.org/gettext?urn=ctp:shan-hai-jing/*",
+    "license": "先秦典籍原文属公有领域；ctext 数据服务要求署名、非商业批量再分发前请核阅其条款",
+    "url": "https://ctext.org/shan-hai-jing",
+    "chapters": 18,
+    "fetchedAt": "2026-07-13"
+  }
+}
