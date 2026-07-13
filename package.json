@@ -1,0 +1,73 @@
+{
+  "name": "tbss-ts-lib",
+  "version": "0.1.0",
+  "description": "铁板神数语料库 — 一万二千条文（十二集，带年龄注记）、十四考取数表十五张、注解精选与方法文献的结构化 TypeScript 库（Tieban Shenshu corpus）",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./verses": {
+      "types": "./dist/verses.d.ts",
+      "import": "./dist/verses.js",
+      "default": "./dist/verses.js"
+    },
+    "./tables": {
+      "types": "./dist/tables.d.ts",
+      "import": "./dist/tables.js",
+      "default": "./dist/tables.js"
+    },
+    "./annotated": {
+      "types": "./dist/annotated.d.ts",
+      "import": "./dist/annotated.js",
+      "default": "./dist/annotated.js"
+    },
+    "./docs": {
+      "types": "./dist/docs.d.ts",
+      "import": "./dist/docs.js",
+      "default": "./dist/docs.js"
+    },
+    "./prompt": {
+      "types": "./dist/prompt.d.ts",
+      "import": "./dist/prompt.js",
+      "default": "./dist/prompt.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "INTEGRATION.md",
+    "docs/sources.md"
+  ],
+  "scripts": {
+    "ingest": "node scripts/ingest.mjs",
+    "gen": "node scripts/gen-data.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "tieban",
+    "tiebanshenshu",
+    "铁板神数",
+    "铁版神数",
+    "条文",
+    "考刻",
+    "邵雍",
+    "命理",
+    "术数",
+    "divination",
+    "corpus"
+  ],
+  "license": "CC-BY-NC-4.0",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0"
+  }
+}

@@ -1,0 +1,22 @@
+{
+ "sources": [
+  {
+   "id": "nanphy",
+   "url": "https://github.com/Nanphy/TiebanshenshuOS",
+   "commit": "785dc871d523",
+   "note": "条文库（DB/List.csv，12000 条）与十五张取数表底本（UTF-8 整理版）"
+  },
+  {
+   "id": "xaminxan",
+   "url": "https://github.com/xaminxan/tiebanshenshu",
+   "commit": "e17f30cb65b7",
+   "note": "条文与取数表原始录入上游（GB18030）；十五表与 Nanphy 版逐字节同文"
+  },
+  {
+   "id": "mingli-lab",
+   "url": "https://github.com/wangdwn/mingli-lab",
+   "commit": "cadb2f4fc34b",
+   "note": "注解精选 29 条（题注「邵雍著，陈明点校《铁板神数》」节录 + 今注）"
+  }
+ ]
+}

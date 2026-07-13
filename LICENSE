@@ -1,0 +1,16 @@
+tbss-ts-lib — 铁板神数语料库
+汇编与代码：CC BY-NC 4.0（署名-非商业性使用 4.0 国际）
+
+本库为清代术数文献《铁板神数》条文及配套取数表的社区数字化转录之结构化汇编：
+
+- 条文文本为清代刊行之公版古籍内容；
+- 数字化录入取自 GitHub 公开仓库（原始录入 xaminxan/tiebanshenshu，
+  UTF-8 整理 Nanphy/TiebanshenshuOS，注解精选 wangdwn/mingli-lab），
+  上游均未声明许可证、README 注「仅供学习交流」，本库完整署名并锁定 commit 引用
+  （见 docs/sources.md）；
+- 本库自撰部分（TypeScript 代码、方法文献综述、数据规范化管线）与汇编整体
+  以 CC BY-NC 4.0 发布：如实署名、禁止商用、上游权利人异议即撤。
+
+内容仅供文献研究、数字人文与传统文化学习之用，不构成任何命运预测依据。
+
+CC BY-NC 4.0 法律文本：https://creativecommons.org/licenses/by-nc/4.0/legalcode.zh-hans
