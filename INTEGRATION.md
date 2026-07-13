@@ -100,6 +100,23 @@ const entries = await getChapterEntries('nanshan'); // 首次打开该卷才拉 
 const hits = await searchText('凤皇');
 ```
 
+## 3.5 水系图层
+
+```tsx
+import { riversToGeoJSON } from 'shj-ts-lib/geo';
+import { getRiversByLocation } from 'shj-ts-lib/rivers';
+
+// 73 条 LineString：自源头山沿经文流向的示意短线（非水文复原）
+for (const f of riversToGeoJSON().features) {
+  L.polyline(f.geometry.coordinates.map(([lng, lat]) => [lat, lng]), {
+    color: '#2f7fb0', weight: 2, dashArray: '1 6',
+  }).bindTooltip(f.properties.label); // 「漳水 · 出发鸠之山 · 东流注于河」
+}
+
+// 地望详情页联动：这座山流出哪些水
+getRiversByLocation('fajiu'); // [{ name:'漳水', dir:'东', dest:'河', … }]
+```
+
 ## 4. 地望层与「山海经地理」玩法
 
 ```ts
