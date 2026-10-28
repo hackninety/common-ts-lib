@@ -10,7 +10,7 @@
 ## 安装与使用
 
 ```bash
-npm install github:hackninety/qmdj-ts-lib   # 或本地开发 file:../qmdj-ts-lib
+npm install https://github.com/hackninety/common-ts-lib/releases/download/qmdj-ts-lib-v0.2.0/qmdj-ts-lib-0.2.0.tgz   # 或本地开发 file:../common-ts-lib/packages/qmdj-ts-lib
 ```
 
 ```ts

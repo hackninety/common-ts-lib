@@ -27,7 +27,7 @@
 ## 安装与使用
 
 ```bash
-npm install github:hackninety/tbss-ts-lib
+npm install https://github.com/hackninety/common-ts-lib/releases/download/tbss-ts-lib-v0.1.0/tbss-ts-lib-0.1.0.tgz
 ```
 
 ```ts

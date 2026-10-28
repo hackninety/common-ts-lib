@@ -5,7 +5,7 @@
 打包器会自动 code-split，宿主首屏只引入轻量索引（约 300KB，gzip 后远小）。
 
 ```bash
-npm install github:hackninety/nhx-ts-lib
+npm install https://github.com/hackninety/common-ts-lib/releases/download/nhx-ts-lib-v0.1.1/nhx-ts-lib-0.1.1.tgz
 ```
 
 ## 1. 典籍抽屉（与 lrdq-ts-lib/zslj-ts-lib 同形）

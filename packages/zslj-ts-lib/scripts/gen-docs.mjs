@@ -8,7 +8,8 @@ import path from 'node:path';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DOCS = path.join(ROOT, 'docs');
-const RAW_BASE = 'https://raw.githubusercontent.com/hackninety/zslj-ts-lib/main/docs/';
+const { name, version } = JSON.parse(readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+const RAW_BASE = `https://raw.githubusercontent.com/hackninety/common-ts-lib/${name}-v${version}/packages/${name}/docs/`;
 const INCLUDE_GROUPS = new Set(['book', 'algorithm']);
 
 const normalize = (p) => {

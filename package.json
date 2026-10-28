@@ -1,0 +1,24 @@
+{
+  "name": "common-ts-lib",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Independent TypeScript libraries managed in one workspace",
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "typecheck": "pnpm -r run typecheck",
+    "pack:libs": "node scripts/pack.mjs",
+    "verify:packages": "node scripts/verify-packages.mjs",
+    "release:libs": "node scripts/publish.mjs",
+    "check": "pnpm typecheck && pnpm build && pnpm test && pnpm pack:libs && pnpm verify:packages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackninety/common-ts-lib.git"
+  }
+}

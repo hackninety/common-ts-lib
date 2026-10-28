@@ -35,7 +35,7 @@
 ## 安装与使用
 
 ```bash
-npm install github:hackninety/nhx-ts-lib
+npm install https://github.com/hackninety/common-ts-lib/releases/download/nhx-ts-lib-v0.1.1/nhx-ts-lib-0.1.1.tgz
 ```
 
 ```ts

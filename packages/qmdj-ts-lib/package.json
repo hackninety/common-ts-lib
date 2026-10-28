@@ -39,7 +39,9 @@
     "extract": "node scripts/extract-ctext.mjs docs/corpus/qmmj",
     "gen": "node scripts/gen-data.mjs",
     "build": "node scripts/build.mjs",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepack": "npm run build",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "keywords": [
     "qimen",
@@ -60,5 +62,10 @@
   "devDependencies": {
     "typescript": "~5.9.3",
     "vitest": "^3.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackninety/common-ts-lib.git",
+    "directory": "packages/qmdj-ts-lib"
   }
 }

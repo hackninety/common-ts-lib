@@ -3,8 +3,8 @@
 ## 1. 安装
 
 ```bash
-npm install file:../qmdj-ts-lib          # 本地开发
-# 发布 GitHub 后：npm install github:hackninety/qmdj-ts-lib#v0.1.0
+npm install file:../common-ts-lib/packages/qmdj-ts-lib          # 本地开发
+# 发布 GitHub 后：npm install https://github.com/hackninety/common-ts-lib/releases/download/qmdj-ts-lib-v0.2.0/qmdj-ts-lib-0.2.0.tgz
 ```
 
 ## 2. 典籍抽屉

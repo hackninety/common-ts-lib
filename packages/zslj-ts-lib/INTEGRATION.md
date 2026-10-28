@@ -6,7 +6,7 @@
 
 ```bash
 # 在 D:\WWW\react-liuren 下
-npm install file:../zslj-ts-lib
+npm install file:../common-ts-lib/packages/zslj-ts-lib
 ```
 
 （本地 file: 依赖为符号链接；库目录执行过 `npm run build` 即可被消费，改库后需重新 build。）

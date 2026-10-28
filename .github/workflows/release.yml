@@ -1,0 +1,41 @@
+name: Release packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package to publish (increment its version first)
+        type: choice
+        required: true
+        options:
+          - all
+          - lrdq-ts-lib
+          - nhx-ts-lib
+          - qmdj-ts-lib
+          - shj-ts-lib
+          - tbss-ts-lib
+          - zslj-ts-lib
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-packages
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: node scripts/publish.mjs "$PACKAGE"
+        env:
+          PACKAGE: ${{ inputs.package }}
+          GITHUB_TOKEN: ${{ github.token }}

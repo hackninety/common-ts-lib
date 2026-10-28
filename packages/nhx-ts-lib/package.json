@@ -69,7 +69,8 @@
     "gen": "node scripts/gen-data.mjs",
     "build": "node scripts/build.mjs",
     "test": "vitest run",
-    "prepare": "npm run build"
+    "prepack": "npm run build",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "keywords": [
     "nihaixia",
@@ -93,5 +94,10 @@
     "js-yaml": "^4.1.0",
     "typescript": "^5.9.3",
     "vitest": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackninety/common-ts-lib.git",
+    "directory": "packages/nhx-ts-lib"
   }
 }

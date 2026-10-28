@@ -5,7 +5,7 @@
 为地图 + 百科类宿主（如 react-shj）设计：**实体索引/地望坐标同步可用，经文与实体正文按需分包懒加载，GeoJSON 一行导出**。
 
 ```bash
-npm install github:hackninety/shj-ts-lib
+npm install https://github.com/hackninety/common-ts-lib/releases/download/shj-ts-lib-v0.1.0/shj-ts-lib-0.1.0.tgz
 ```
 
 ## 数据总览

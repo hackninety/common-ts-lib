@@ -3,8 +3,8 @@
 ## 1. 安装
 
 ```bash
-npm install github:hackninety/lrdq-ts-lib#v0.10.0
-# 本地开发：npm install file:../lrdq-ts-lib
+npm install https://github.com/hackninety/common-ts-lib/releases/download/lrdq-ts-lib-v0.11.0/lrdq-ts-lib-0.11.0.tgz
+# 本地开发：npm install file:../common-ts-lib/packages/lrdq-ts-lib
 ```
 
 ## 2. 毕法命中插件 `src/plugins/bifa.ts`

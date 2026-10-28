@@ -6,9 +6,9 @@
 宿主首屏只引入轻量索引（卷册清单 + 注册表，不足 5KB）。
 
 ```bash
-npm install github:hackninety/tbss-ts-lib
+npm install https://github.com/hackninety/common-ts-lib/releases/download/tbss-ts-lib-v0.1.0/tbss-ts-lib-0.1.0.tgz
 # 本地并排开发（如 D:\WWW\react-tieban）：
-npm install file:../tbss-ts-lib
+npm install file:../common-ts-lib/packages/tbss-ts-lib
 ```
 
 ## 1. 条文阅读器（十二集抽屉 + 条文视图）

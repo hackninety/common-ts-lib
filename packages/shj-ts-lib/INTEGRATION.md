@@ -4,7 +4,7 @@
 经文与实体正文共 19 个 chunk 按需分包——地图首屏只引入约 200KB 索引。
 
 ```bash
-npm install github:hackninety/shj-ts-lib
+npm install https://github.com/hackninety/common-ts-lib/releases/download/shj-ts-lib-v0.1.0/shj-ts-lib-0.1.0.tgz
 ```
 
 ## 0. 图片静态资源（一次性配置）

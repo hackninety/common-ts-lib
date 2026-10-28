@@ -22,7 +22,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "vitest run",
-    "prepare": "npm run build"
+    "prepack": "npm run build",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "keywords": [
     "liuren",
@@ -41,5 +42,10 @@
     "@types/node": "^25.5.0",
     "typescript": "^5.9.3",
     "vitest": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackninety/common-ts-lib.git",
+    "directory": "packages/zslj-ts-lib"
   }
 }
