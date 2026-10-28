@@ -1,0 +1,214 @@
+{
+ "manifest": [
+  {
+   "path": "lrdq/book/xu.md",
+   "title": "提要（四庫總目）",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan01.md",
+   "title": "卷一 起例",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan02.md",
+   "title": "卷二 神將釋",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan03.md",
+   "title": "卷三 歌賦",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan04.md",
+   "title": "卷四 歌賦（續）",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan05.md",
+   "title": "卷五 兵占",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan06.md",
+   "title": "卷六 宿度分野",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan07.md",
+   "title": "卷七 課經集一",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan08.md",
+   "title": "卷八 課經集二",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan09.md",
+   "title": "卷九 課經集三",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan10.md",
+   "title": "卷十 課經集四",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrxj/book/xu.md",
+   "title": "序·總目",
+   "group": "book",
+   "book": "六壬心鏡",
+   "dynasty": "唐",
+   "author": "徐道符"
+  },
+  {
+   "path": "lrxj/book/juan01.md",
+   "title": "卷一 釋課元微·宗首九科",
+   "group": "book",
+   "book": "六壬心鏡",
+   "dynasty": "唐",
+   "author": "徐道符"
+  },
+  {
+   "path": "lrxj/book/juan02.md",
+   "title": "卷二 新孕·隱匿·乖別·十雜",
+   "group": "book",
+   "book": "六壬心鏡",
+   "dynasty": "唐",
+   "author": "徐道符"
+  },
+  {
+   "path": "lrxj/book/juan03.md",
+   "title": "卷三 凶否·吉泰",
+   "group": "book",
+   "book": "六壬心鏡",
+   "dynasty": "唐",
+   "author": "徐道符"
+  },
+  {
+   "path": "lrxj/book/juan04.md",
+   "title": "卷四 雜神·雜將·三宮時",
+   "group": "book",
+   "book": "六壬心鏡",
+   "dynasty": "唐",
+   "author": "徐道符"
+  },
+  {
+   "path": "lrxj/book/juan05.md",
+   "title": "卷五 占宅·婚產·田蠶",
+   "group": "book",
+   "book": "六壬心鏡",
+   "dynasty": "唐",
+   "author": "徐道符"
+  },
+  {
+   "path": "lrxj/book/juan06.md",
+   "title": "卷六 商賈·官職·亡盜·官訟",
+   "group": "book",
+   "book": "六壬心鏡",
+   "dynasty": "唐",
+   "author": "徐道符"
+  },
+  {
+   "path": "lrxj/book/juan07.md",
+   "title": "卷七 疾病·行人·天時·雜課",
+   "group": "book",
+   "book": "六壬心鏡",
+   "dynasty": "唐",
+   "author": "徐道符"
+  },
+  {
+   "path": "lrxj/book/juan08.md",
+   "title": "卷八 兵占",
+   "group": "book",
+   "book": "六壬心鏡",
+   "dynasty": "唐",
+   "author": "徐道符"
+  },
+  {
+   "path": "lrzn/book/xu.md",
+   "title": "序·目錄·原序",
+   "group": "book",
+   "book": "六壬指南注解",
+   "dynasty": "明",
+   "author": "陳公獻撰·張洪注"
+  },
+  {
+   "path": "lrzn/book/juan01.md",
+   "title": "卷一 注釋心印賦",
+   "group": "book",
+   "book": "六壬指南注解",
+   "dynasty": "明",
+   "author": "陳公獻撰·張洪注"
+  },
+  {
+   "path": "lrzn/book/juan02.md",
+   "title": "卷二 注釋指掌賦",
+   "group": "book",
+   "book": "六壬指南注解",
+   "dynasty": "明",
+   "author": "陳公獻撰·張洪注"
+  },
+  {
+   "path": "lrzn/book/juan03.md",
+   "title": "卷三 會纂占驗指南",
+   "group": "book",
+   "book": "六壬指南注解",
+   "dynasty": "明",
+   "author": "陳公獻撰·張洪注"
+  },
+  {
+   "path": "lrzn/book/juan04.md",
+   "title": "卷四 神煞指南",
+   "group": "book",
+   "book": "六壬指南注解",
+   "dynasty": "明",
+   "author": "陳公獻撰·張洪注"
+  },
+  {
+   "path": "lrdq/book/juan11.md",
+   "title": "卷十一 畢法賦上",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/book/juan12.md",
+   "title": "卷十二 畢法賦下",
+   "group": "book",
+   "book": "六壬大全",
+   "dynasty": "明"
+  },
+  {
+   "path": "lrdq/algorithm/bifa-detect.md",
+   "title": "畢法百法 · 检测口径说明",
+   "group": "algorithm",
+   "book": "六壬大全",
+   "dynasty": "明"
+  }
+ ]
+}

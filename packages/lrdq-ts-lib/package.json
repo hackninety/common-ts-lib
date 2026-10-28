@@ -1,0 +1,69 @@
+{
+  "name": "lrdq-ts-lib",
+  "version": "0.11.0",
+  "description": "大六壬典籍语料库（首册《六壬大全》明·四庫全書本全书）与《畢法賦》百法命中检测引擎 — Da LiuRen classics corpus & BiFa-100 pattern detector",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./docs": {
+      "types": "./dist/docs.d.ts",
+      "import": "./dist/docs.js",
+      "default": "./dist/docs.js"
+    },
+    "./keju": {
+      "types": "./dist/keju.d.ts",
+      "import": "./dist/keju.js",
+      "default": "./dist/keju.js"
+    },
+    "./shensha": {
+      "types": "./dist/shensha.d.ts",
+      "import": "./dist/shensha.js",
+      "default": "./dist/shensha.js"
+    },
+    "./leishen": {
+      "types": "./dist/leishen.d.ts",
+      "import": "./dist/leishen.js",
+      "default": "./dist/leishen.js"
+    },
+    "./cases": {
+      "types": "./dist/cases.d.ts",
+      "import": "./dist/cases.js",
+      "default": "./dist/cases.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "INTEGRATION.md"
+  ],
+  "scripts": {
+    "gen": "node scripts/gen-data.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "liuren",
+    "六壬",
+    "六壬大全",
+    "毕法赋",
+    "畢法賦",
+    "典籍语料库",
+    "corpus",
+    "古籍",
+    "divination"
+  ],
+  "license": "CC-BY-NC-4.0",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0"
+  }
+}
