@@ -1,0 +1,236 @@
+{
+  "book": "占事略決",
+  "author": "安倍晴明",
+  "source": "https://miko.org/~uraki/kuon/furu/explain/meisi/onmyouji/senji/senjiryakuketu.htm",
+  "fetchedAt": "2026-07-05",
+  "chapters": [
+    {
+      "no": 0,
+      "title": "第零 目錄總綱",
+      "sourceFile": "ryakuketu00.htm",
+      "anchor": null
+    },
+    {
+      "no": 1,
+      "title": "第一 四課三傳法",
+      "sourceFile": "ryakuketu01.htm",
+      "anchor": null
+    },
+    {
+      "no": 2,
+      "title": "第二 課用九法",
+      "sourceFile": "ryakuketu01.htm",
+      "anchor": "senji02"
+    },
+    {
+      "no": 3,
+      "title": "第三 天一治法",
+      "sourceFile": "ryakuketu01.htm",
+      "anchor": "senji03"
+    },
+    {
+      "no": 4,
+      "title": "第四 十二將所主法",
+      "sourceFile": "ryakuketu02.htm",
+      "anchor": "senji04"
+    },
+    {
+      "no": 5,
+      "title": "第五 十二月將所主法",
+      "sourceFile": "ryakuketu02.htm",
+      "anchor": "senji05"
+    },
+    {
+      "no": 6,
+      "title": "第六 十干罡柔法",
+      "sourceFile": "ryakuketu02.htm",
+      "anchor": "senji06"
+    },
+    {
+      "no": 7,
+      "title": "第七 十二支陰陽法",
+      "sourceFile": "ryakuketu02.htm",
+      "anchor": "senji07"
+    },
+    {
+      "no": 8,
+      "title": "第八 課干支法",
+      "sourceFile": "ryakuketu03.htm",
+      "anchor": "senji08"
+    },
+    {
+      "no": 9,
+      "title": "第九 五行王相等法",
+      "sourceFile": "ryakuketu03.htm",
+      "anchor": "senji09"
+    },
+    {
+      "no": 10,
+      "title": "第十 所勝法",
+      "sourceFile": "ryakuketu03.htm",
+      "anchor": "senji10"
+    },
+    {
+      "no": 11,
+      "title": "十一 五行相生相剋法",
+      "sourceFile": "ryakuketu03.htm",
+      "anchor": "senji11"
+    },
+    {
+      "no": 12,
+      "title": "十二 五行相刑法",
+      "sourceFile": "ryakuketu04.htm",
+      "anchor": "senji12"
+    },
+    {
+      "no": 13,
+      "title": "十三 五行相破法",
+      "sourceFile": "ryakuketu04.htm",
+      "anchor": "senji13"
+    },
+    {
+      "no": 14,
+      "title": "十四 日德法",
+      "sourceFile": "ryakuketu04.htm",
+      "anchor": "senji14"
+    },
+    {
+      "no": 15,
+      "title": "十五 日財法",
+      "sourceFile": "ryakuketu04.htm",
+      "anchor": "senji15"
+    },
+    {
+      "no": 16,
+      "title": "十六 日鬼法",
+      "sourceFile": "ryakuketu04.htm",
+      "anchor": "senji16"
+    },
+    {
+      "no": 17,
+      "title": "十七 干支數法",
+      "sourceFile": "ryakuketu05.htm",
+      "anchor": "senji17"
+    },
+    {
+      "no": 18,
+      "title": "十八 五行數法",
+      "sourceFile": "ryakuketu05.htm",
+      "anchor": "senji18"
+    },
+    {
+      "no": 19,
+      "title": "十九 五行干支色法",
+      "sourceFile": "ryakuketu05.htm",
+      "anchor": "senji19"
+    },
+    {
+      "no": 20,
+      "title": "二十 十二客法",
+      "sourceFile": "ryakuketu05.htm",
+      "anchor": "senji20"
+    },
+    {
+      "no": 21,
+      "title": "廿一 十二籌法",
+      "sourceFile": "ryakuketu06.htm",
+      "anchor": "senji21"
+    },
+    {
+      "no": 22,
+      "title": "廿二 一人問五事法",
+      "sourceFile": "ryakuketu06.htm",
+      "anchor": "senji22"
+    },
+    {
+      "no": 23,
+      "title": "廿三 知男女行年法",
+      "sourceFile": "ryakuketu06.htm",
+      "anchor": "senji23"
+    },
+    {
+      "no": 24,
+      "title": "廿四 空亡法",
+      "sourceFile": "ryakuketu06.htm",
+      "anchor": "senji24"
+    },
+    {
+      "no": 25,
+      "title": "廿五 知吉凶期法",
+      "sourceFile": "ryakuketu07.htm",
+      "anchor": "senji25"
+    },
+    {
+      "no": 26,
+      "title": "廿六 卅六卦所主大例法",
+      "sourceFile": "ryakuketu07.htm",
+      "anchor": "senji26"
+    },
+    {
+      "no": 27,
+      "title": "廿七 占病祟法",
+      "sourceFile": "ryakuketu08.htm",
+      "anchor": "senji27"
+    },
+    {
+      "no": 28,
+      "title": "廿八 占病死生法",
+      "sourceFile": "ryakuketu08.htm",
+      "anchor": "senji28"
+    },
+    {
+      "no": 29,
+      "title": "廿九 占產期法",
+      "sourceFile": "ryakuketu08.htm",
+      "anchor": "senji29"
+    },
+    {
+      "no": 30,
+      "title": "三十 占產男女法",
+      "sourceFile": "ryakuketu08.htm",
+      "anchor": "senji30"
+    },
+    {
+      "no": 31,
+      "title": "卅一 占待人法",
+      "sourceFile": "ryakuketu09.htm",
+      "anchor": "senji31"
+    },
+    {
+      "no": 32,
+      "title": "卅二 占盜失物得否法",
+      "sourceFile": "ryakuketu09.htm",
+      "anchor": "senji32"
+    },
+    {
+      "no": 33,
+      "title": "卅三 占六畜迯亡法",
+      "sourceFile": "ryakuketu09.htm",
+      "anchor": "senji33"
+    },
+    {
+      "no": 34,
+      "title": "卅四 占聞事信否法",
+      "sourceFile": "ryakuketu09.htm",
+      "anchor": "senji34"
+    },
+    {
+      "no": 35,
+      "title": "卅五 占有雨否法",
+      "sourceFile": "ryakuketu10.htm",
+      "anchor": "senji35"
+    },
+    {
+      "no": 36,
+      "title": "卅六 占晴法",
+      "sourceFile": "ryakuketu10.htm",
+      "anchor": "senji36"
+    },
+    {
+      "no": 37,
+      "title": "占事略決跋",
+      "sourceFile": "ryakuketu10.htm",
+      "anchor": "oku"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "zslj-ts-lib",
+  "version": "0.1.0",
+  "description": "《占事略決》（安倍晴明）六壬式占古法排盘引擎 — Senji Ryakketsu (Abe no Seimei) rikujin engine, faithful to the 983 AD original text",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "docs",
+    "README.md",
+    "INTEGRATION.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "liuren",
+    "六壬",
+    "占事略決",
+    "senji-ryakketsu",
+    "安倍晴明",
+    "onmyodo",
+    "divination"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "tyme4ts": "^1.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0"
+  }
+}
