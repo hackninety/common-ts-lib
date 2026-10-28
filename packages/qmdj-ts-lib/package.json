@@ -1,0 +1,64 @@
+{
+  "name": "qmdj-ts-lib",
+  "version": "0.2.0",
+  "description": "奇门遁甲典籍语料库：《奇門遁甲秘笈大全》（附金函玉鏡残卷）《遁甲演義》（四庫本）《奇門遁甲統宗》《奇门宝鉴（御定）》，节级结构化 + 盘面克应检索 + 占目库 + 格局多书互证 — Qimen Dunjia classics corpus",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./docs": {
+      "types": "./dist/docs.d.ts",
+      "import": "./dist/docs.js",
+      "default": "./dist/docs.js"
+    },
+    "./keying": {
+      "types": "./dist/keying.d.ts",
+      "import": "./dist/keying.js",
+      "default": "./dist/keying.js"
+    },
+    "./zhanmu": {
+      "types": "./dist/zhanmu.d.ts",
+      "import": "./dist/zhanmu.js",
+      "default": "./dist/zhanmu.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "INTEGRATION.md"
+  ],
+  "scripts": {
+    "fetch": "node scripts/fetch-ctext.mjs",
+    "fetch:wikisource": "node scripts/fetch-wikisource.mjs",
+    "extract": "node scripts/extract-ctext.mjs docs/corpus/qmmj",
+    "gen": "node scripts/gen-data.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "qimen",
+    "qimendunjia",
+    "奇门遁甲",
+    "奇門遁甲秘笈大全",
+    "遁甲演義",
+    "奇門遁甲統宗",
+    "奇门宝鉴",
+    "刘伯温",
+    "金函玉镜",
+    "典籍语料库",
+    "corpus",
+    "古籍"
+  ],
+  "author": "hackninety",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
