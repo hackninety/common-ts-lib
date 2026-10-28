@@ -1,0 +1,29 @@
+nhx-ts-lib — 倪海厦教学语料库
+汇编与代码：CC BY-NC 4.0（署名-非商业性使用 4.0 国际）
+
+本库为倪海厦先生（1954–2012）公开教学资料的社区转录、整理与结构化汇编：
+
+1. 原始内容（人纪/天纪/地纪课程讲述、诊疗日志、专题文章、汉唐方剂等）
+   版权归倪海厦先生及其继承人（汉唐中医）所有。本库仅收录已在网络公开
+   流传多年、由学习社区转录整理的文字资料，用于教学研究与文化传承，
+   不用于任何商业目的。
+
+2. 转录与整理层（听课笔记、结构化字段、逐字稿校对等）版权归各整理者所有，
+   来源仓库与 commit 已在 docs/sources.md 与 getSources() 中如实署名：
+   - nivance/nihaixia-kb（汇编自 9527qingfeng/hantang-nihaixia-follower 等）
+   - qmzz/ni-haisha-tcm-skill
+   - wesky-online/zhongli_data（重黎团队）
+   - dreams-flying/nihaixia-tianji
+   - wh149728915-stack/nihaixia-64gua
+
+3. 本库自身的 schema 设计、生成脚本、访问器代码与文档，以
+   CC BY-NC 4.0 发布：允许署名后非商业性复制、分发、演绎。
+
+4. 撤下承诺：任何权利人（倪海厦先生继承人、汉唐中医、各整理者）如对
+   本库收录其内容有异议，提出后即从后续版本中移除相应内容。
+
+5. 医疗免责：本库全部内容仅供学习研究与资料检索，不构成诊断、处方、
+   针灸操作或任何医疗建议；临床应用须由执业中医师独立判断。因使用
+   本库内容造成的任何后果，维护者不承担责任。
+
+CC BY-NC 4.0 全文：https://creativecommons.org/licenses/by-nc/4.0/legalcode.zh-hans

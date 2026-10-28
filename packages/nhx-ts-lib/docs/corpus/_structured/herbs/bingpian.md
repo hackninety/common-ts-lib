@@ -1,0 +1,60 @@
+---
+title: "冰片"
+content_scope: "学习参考与资料检索，不作为诊断、处方、针灸操作或治疗建议"
+safety_disclaimer_required: true
+reviewer: "p6_verified_standardization"
+review_status: verified
+kind: "herb"
+source: "神农本草经"
+tags: ["神农本草经", "中药", "倪海厦"]
+性味: "辛苦微寒"
+归经: "心脾肺"
+功效: "开窍醒神，清热止痛"
+主治: "热病神昏，目赤肿痛"
+trace_status: verified
+source_refs:
+  - source_file: "倪海厦人纪系列之神农本草经.json"
+    page_num: 67
+    quote: "经 饮汁，日二，以平安为度。 大风疠疾——须眉已无，皮肉已烂成疮者：蜜蜂子，胡蜂子，黄蜂子并炒各一分，白花 蛇，乌梢蛇并酒浸去皮骨炙干，全蝎，僵蚕并炒，各一两，地龙炒半两，蝎虎（守宫），赤 足蜈蚣各 15 条，丹砂一两，雄黄 一分（醋炒），龙脑半钱，共为细末，每服一钱匕，蜜汤 调下，月三五服。（圣济）。
+---
+
+source_scope: "not_in_nihaixia_source"
+external_reference_required: true
+no_source_policy: "keep_boundary_until_traceable_source"
+
+# 冰片
+
+<!-- P5_STANDARD_NOTICE_START -->
+
+## 学习与安全边界
+
+本条目用于中医学习、资料检索与来源追溯。内容不构成诊断、处方、用药、针灸操作或治疗建议；涉及剂量、配伍、禁忌、针药操作等内容时，必须由合格专业人士结合实际情况判断。
+
+## 来源追溯状态
+
+- 条目类型：药材
+- 追溯状态：verified
+- 来源引用：见本文 frontmatter 中的 `source_refs`
+- 复核说明：P6 verified 标准化条目，优先统一治理元数据与安全边界，不自动改写正文医学内容。
+
+<!-- P5_STANDARD_NOTICE_END -->
+
+## 📌 基础信息
+
+- **来源：** 神农本草经
+- **性味：** 辛苦微寒
+- **归经：** 心脾肺
+
+## 💊 功效
+
+开窍醒神，清热止痛
+
+## 🎯 主治
+
+热病神昏，目赤肿痛
+
+## 🌿 倪师讲解
+
+> 经 饮汁，日二，以平安为度。 大风疠疾——须眉已无，皮肉已烂成疮者：蜜蜂子，胡蜂子，黄蜂子并炒各一分，白花 蛇，乌梢蛇并酒浸去皮骨炙干，全蝎，僵蚕并炒，各一两，地龙炒半两，蝎虎（守宫），赤 足蜈蚣各 15 条，丹砂一两，雄黄 一分（醋炒），龙脑半钱，共为细末，每服一钱匕，蜜汤 调下，月三五服。（圣济）。
+
+---

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "vitest-ui",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vitest", "--ui", "--watch", "--api.port", "51204"],
+      "port": 51204
+    }
+  ]
+}

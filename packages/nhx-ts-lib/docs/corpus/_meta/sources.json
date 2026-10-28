@@ -1,0 +1,30 @@
+{
+  "ingestedAt": "2026-07-12",
+  "repos": [
+    {
+      "url": "https://github.com/nivance/nihaixia-kb",
+      "commit": "c387d4a43b452651f66b2967a0872bbab0d7e52a",
+      "note": "讲稿/医案/天纪/专题/方剂讲解 主底本（汇编自 9527qingfeng/hantang-nihaixia-follower 等）"
+    },
+    {
+      "url": "https://github.com/qmzz/ni-haisha-tcm-skill",
+      "commit": "90b214aa5bfb77cbcdfb1590318464d64bf58f9b",
+      "note": "中药/穴位/方剂 结构化实体（含人纪原文引用）"
+    },
+    {
+      "url": "https://github.com/wesky-online/zhongli_data",
+      "commit": "ce2f93a33337cdfd54a9db8f55c99bc25c38e2b5",
+      "note": "人纪五部视频逐字稿段落级 JSON（重黎医案数据集）"
+    },
+    {
+      "url": "https://github.com/dreams-flying/nihaixia-tianji",
+      "commit": "5183e2de078384ed2447f5398b2dd286f95c3330",
+      "note": "天纪视频课程字幕 markdown"
+    },
+    {
+      "url": "https://github.com/wh149728915-stack/nihaixia-64gua",
+      "commit": "55e38592bb0d769bfdc9db51b96a39ba4bbd26f1",
+      "note": "天纪 64 卦图解详文"
+    }
+  ]
+}
