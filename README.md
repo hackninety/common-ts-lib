@@ -74,7 +74,7 @@ CI 对主分支和 Pull Request 执行类型检查、构建、测试、打包与
 
 `mingli-cases-ts-lib` 将题目、答案/已知生平、上游预排盘拆为独立懒加载载荷；轻量索引不包含答案。BaziQA 固定上游提交的原始文件、来源说明与许可保留在该包 `docs/upstream/`，增加其他命例来源的方法见包内 README。未知的术数、时辰、时区保持未知，预排盘仅作为带口径说明的上游参考。
 
-`react-8char` 和 `react-iztro` 提供常驻命例库入口，展开才加载；`react-liuren`、`react-qimen`、`react-tieban` 必须显式开启算命模式并展开入口才加载。关闭模式或更换当前命盘会清除参考。命例不会覆盖当前出生资料，其已知经历只在用户明确选取时作为单独的 AI 参考资料。
+`react-8char`、`react-iztro`（Storybook）和现在线上的 `react-zwds` 提供常驻命例库入口，展开才加载；`react-liuren`、`react-qimen`、`react-tieban` 必须显式开启算命模式并展开入口才加载。关闭模式或更换当前命盘会清除参考。命例不会覆盖当前出生资料，其已知经历只在用户明确选取时作为单独的 AI 参考资料。
 
 ### 原六库迁移
 
