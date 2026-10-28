@@ -47,3 +47,5 @@
 原来的六个本机目录与远端仓库保留。迁移前后的前端依赖可通过各前端 Git 提交比较；恢复旧 package.json / package-lock.json 后执行 npm ci 即可恢复旧安装来源。统一仓库中可通过上述原始提交读取旧源码。
 
 原始历史查询以表中的导入提交为准，例如 git show <导入提交>:src/index.ts。subtree 导入之前的文件位于原仓库路径，git log --follow 不保证跨 subtree 合并自动连通整个历史。旧仓库保留为历史来源，后续开发和发布移至 common-ts-lib。
+
+2026-10-28 修订：zslj-ts-lib 0.1.1 将发布白名单收窄到 dist、docs/book、docs/algorithm 与集成说明；原始 HTML、图片和全部公开接口保留，内部 plan/research 只保留在源码仓库。旧版本 Release 不修改。

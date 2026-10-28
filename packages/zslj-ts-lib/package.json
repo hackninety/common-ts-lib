@@ -1,6 +1,6 @@
 {
   "name": "zslj-ts-lib",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "《占事略決》（安倍晴明）六壬式占古法排盘引擎 — Senji Ryakketsu (Abe no Seimei) rikujin engine, faithful to the 983 AD original text",
   "type": "module",
   "main": "./dist/index.js",
@@ -15,7 +15,8 @@
   },
   "files": [
     "dist",
-    "docs",
+    "docs/book",
+    "docs/algorithm",
     "README.md",
     "INTEGRATION.md"
   ],

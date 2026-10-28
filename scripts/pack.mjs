@@ -91,6 +91,12 @@ async function pack(names) {
     for (const file of filesUnder(join(pkg.directory, 'dist'))) {
       assert(included.has(`dist/${file}`), `${pkg.name}: missing built file dist/${file}`);
     }
+    if (pkg.name === 'zslj-ts-lib') {
+      assert(!files.some(file => /^docs\/(plan|research)\//.test(file.path)), 'zslj-ts-lib: internal planning docs must not ship');
+      for (const group of ['book', 'algorithm']) for (const file of filesUnder(join(pkg.directory, 'docs', group))) {
+        assert(included.has('docs/' + group + '/' + file), 'zslj-ts-lib: missing original/document asset ' + file);
+      }
+    }
     if (pkg.name === 'shj-ts-lib') {
       const assets = filesUnder(join(pkg.directory, 'assets'));
       assert(assets.length > 0, 'shj-ts-lib: image assets are empty');

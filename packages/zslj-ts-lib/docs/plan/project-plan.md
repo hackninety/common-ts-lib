@@ -2,7 +2,7 @@
 
 > 依据：`docs/book/senji-ryakketsu.md`（全书合订本，2026-07-05 采集自 miko.org）
 > 调研：`docs/research/similar-projects.md`
-> 状态：本方案已实施——排盘引擎独立为 [`zslj-ts-lib`](https://github.com/hackninety/zslj-ts-lib) 库，前端接入库并保留典籍页与 AI 分析。下文为最初的设计方案，保留作背景参考。
+> 状态：本方案已实施——排盘引擎独立为 [`zslj-ts-lib`](https://github.com/hackninety/common-ts-lib/tree/main/packages/zslj-ts-lib) 库，前端接入库并保留典籍页与 AI 分析。下文为最初的设计方案，保留作背景参考。
 
 ---
 

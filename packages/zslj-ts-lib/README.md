@@ -5,7 +5,7 @@
 与通行（明清《六壬大全》系）大六壬不同，本库严格按原书三十六法实现——涉害只论孟深仲半季浅、贵人旦暮以寅~酉为界、九法无别责、伏吟刑冲取传、卅六卦课体——每个结果都携带原文锚点（`refs`），可溯源到条文。原书第廿六章「假令」课例即黄金测试用例（`npm test`，21 用例）。
 
 ```bash
-npm install zslj-ts-lib   # 或本地 file: 依赖
+npm install https://github.com/hackninety/common-ts-lib/releases/download/zslj-ts-lib-v0.1.1/zslj-ts-lib-0.1.1.tgz
 ```
 
 ## 快速上手
@@ -65,3 +65,5 @@ chart.refs                   // 本盘涉及的全部原文锚点
 ## 许可
 
 MIT（引擎代码）。原文为公有领域；数据中浦木裕补注文本仅作研究引用，请保留出处。本库仅供文化研究。
+
+0.1.1 发布包保留 dist、典籍/算法说明、原始 HTML 和图片，排除内部 plan/research 文档。全部公开导出和典籍接口不变，图片链接固定到对应 common-ts-lib 版本标签。源码与后续维护以 [common-ts-lib](https://github.com/hackninety/common-ts-lib/tree/main/packages/zslj-ts-lib) 为准。

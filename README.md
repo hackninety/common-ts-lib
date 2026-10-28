@@ -11,7 +11,7 @@
 | [qmdj-ts-lib](packages/qmdj-ts-lib) | 0.2.0 | 奇门典籍、克应与占目 | MIT（沿用原包声明） |
 | [shj-ts-lib](packages/shj-ts-lib) | 0.1.0 | 山海经文、实体、地理与古图 | MIT |
 | [tbss-ts-lib](packages/tbss-ts-lib) | 0.1.0 | 铁板神数条文与取数表 | CC-BY-NC-4.0 |
-| [zslj-ts-lib](packages/zslj-ts-lib) | 0.1.0 | 占事略決排盘与典籍 | MIT |
+| [zslj-ts-lib](packages/zslj-ts-lib) | 0.1.1 | 占事略決排盘与典籍 | MIT |
 
 ## 开发
 

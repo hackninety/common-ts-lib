@@ -170,7 +170,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function fetchRaw(title) {
   const url = `https://zh.wikisource.org/w/index.php?title=${encodeURIComponent(title)}&action=raw`;
   const res = await fetch(url, {
-    headers: { 'user-agent': 'qmdj-ts-lib corpus fetcher (github.com/hackninety/qmdj-ts-lib)' },
+    headers: { 'user-agent': 'qmdj-ts-lib corpus fetcher (github.com/hackninety/common-ts-lib)' },
   });
   if (!res.ok) throw new Error(`${res.status} ${res.statusText} — ${title}`);
   return await res.text();
