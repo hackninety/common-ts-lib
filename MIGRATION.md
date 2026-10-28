@@ -35,7 +35,7 @@
 - 根目录 pnpm workspace、共享 TypeScript 默认配置和单一锁文件。
 - 各包保留名称、版本、公开 exports、数据生成逻辑、图片与许可。
 - 发布包已包含 dist，前端安装时无需获取完整原始语料或运行编译工具。
-- 旧 qmdj 跟踪的 dist 改为生成产物；包的 prepack 负责构建。
+- 旧 qmdj 跟踪的 dist 改为生成产物。直接在包目录执行 npm pack 时 prepack 会构建；统一发布必须先 pnpm build，再由 pack:libs 使用 npm pack --ignore-scripts 归档已有 dist，随后 verify:packages 隔离安装验证。消费已发布 tgz 不会调用 prepack。
 - 包内机器专用 .claude 启动配置移除，旧路径不进入统一开发配置。
 - react-qimen 语料更新脚本按显式版本包地址安装，支持 dry-run。
 - react-zslj 提取脚本改为同步到 common-ts-lib/packages/zslj-ts-lib，并允许 ZSLJ_LIB_DIR 覆盖。
@@ -45,3 +45,5 @@
 ## 回退与追溯
 
 原来的六个本机目录与远端仓库保留。迁移前后的前端依赖可通过各前端 Git 提交比较；恢复旧 package.json / package-lock.json 后执行 npm ci 即可恢复旧安装来源。统一仓库中可通过上述原始提交读取旧源码。
+
+原始历史查询以表中的导入提交为准，例如 git show <导入提交>:src/index.ts。subtree 导入之前的文件位于原仓库路径，git log --follow 不保证跨 subtree 合并自动连通整个历史。旧仓库保留为历史来源，后续开发和发布移至 common-ts-lib。

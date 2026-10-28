@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFile
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { normalizeCanonical } from './canonical.mjs';
+import { birthMetadata } from './birth-metadata.mjs';
 import { verifyCanonicalSnapshot } from './snapshot.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -41,9 +42,6 @@ const topicsFor = (stems) => {
   const topics = topicRules.filter(([, pattern]) => pattern.test(stems)).map(([id]) => id);
   return topics.length ? topics : ['unknown'];
 };
-const timePrecision = (birth) => birth.hour == null ? 'unknown'
-  : /[子丑寅卯辰巳午未申酉戌亥][时時]/.test(birth.time_raw ?? '') ? 'branch'
-    : birth.approximate === true ? 'approximate-clock' : 'minute';
 const sources = [{
   id: snapshot.sourceId, title: 'BaziQA 命理推理题库', url: snapshot.sourceUrl, revision: snapshot.revision,
   license: {
@@ -82,7 +80,7 @@ for (const file of readdirSync(join(upstream, 'data')).filter((name) => name.end
     const stems = person.questions.map((question) => question.question).join('\n');
     const topics = topicsFor(stems);
     const birth = person.profile.birth;
-    const precision = timePrecision(birth);
+    const { timePrecision: precision, birthNotes } = birthMetadata(collectionId, person);
     const meta = {
       id, sourceId: 'baziqa', collectionId, personId: person.person_id, title: person.name, year,
       gender: person.profile.gender ?? 'unknown', method: methodRules.get(person.setter?.method) ?? 'unknown',
@@ -112,7 +110,7 @@ for (const file of readdirSync(join(upstream, 'data')).filter((name) => name.end
     cases.push({ answerVisibility: 'hidden', meta, profile: { gender: meta.gender, birth: {
       year: birth.year, month: birth.month, day: birth.day, hour: birth.hour ?? null, minute: birth.minute ?? null,
       place: birth.place ?? null, approximate: birth.approximate ?? null, timeRaw: birth.time_raw ?? null,
-      raw: birth.raw ?? null, timePrecision: precision, timezone: birth.timezone ?? null,
+      raw: birth.raw ?? null, timePrecision: precision, birthNotes, timezone: birth.timezone ?? null,
       utcOffset: birth.utc_offset ?? null, dst: birth.dst ?? null,
     } }, context: person.context ?? [], questions, provenance });
     answers.push({ answerVisibility: 'included', caseId: id, answerSource, answers: caseAnswers, knownEvents: person.categories ?? {}, notes: person.notes ?? [], provenance });

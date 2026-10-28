@@ -19,6 +19,10 @@ export function buildCasePrompt(study: CaseStudy, options: PromptOptions = {}): 
     `出生时间原文：${birth.timeRaw ?? (birth.timePrecision === 'minute' && birth.hour !== null ? `${birth.hour}:${birth.minute === null ? '分钟未知' : String(birth.minute).padStart(2, '0')}` : '未注明')}；精度：${birth.timePrecision}`,
     `出生地：${birth.place ?? '未注明'}；时区：${birth.timezone ?? '未知'}；当时UTC偏移：${birth.utcOffset ?? '未知'}；夏令时：${birth.dst === null ? '未知' : birth.dst ? '是' : '否'}`,
   ];
+  if (birth.birthNotes?.length) lines.push('出生资料注记（仅限出生与时间来源）：', ...birth.birthNotes);
+  if (birth.timePrecision === 'interval-midpoint') lines.push('时间精度：原文仅给时间区间；库内钟点取区间中点，不能当作精确出生分钟。');
+  if (birth.timePrecision === 'unverified-clock') lines.push('时间精度：钟点未核实，不能当作准确出生时刻，也不能据此确定时柱。');
+  if (birth.timePrecision === 'placeholder') lines.push('时间精度：库内钟点为占位，真实出生时刻未知，不能据此确定时柱。');
   if (birth.timePrecision === 'branch' || birth.approximate) lines.push('原资料为时辰或近似时间；库内时钟数值可能是上游采用的代表值，不应当作精确出生分钟。');
   if (study.context.length) lines.push('题目明确提供的已知条件：', ...study.context);
   lines.push('题目：');

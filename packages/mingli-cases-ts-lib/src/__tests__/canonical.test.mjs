@@ -51,3 +51,12 @@ it('keeps only declared source metadata and rejects non-text notes that cannot r
   document.collection.scoring = { invalid: true };
   expect(() => normalizeCanonical(document)).toThrow('collection.scoring');
 });
+
+
+it('accepts reviewed public birth provenance and distinguishes explicit placeholders from unverified clocks',()=>{
+  for(const precision of ['placeholder','unverified-clock','interval-midpoint']) {
+    const document=template();Object.assign(document.cases[0].birth,{hour:12,minute:0,timePrecision:precision,birthNotes:['仅说明原件出生时刻的不确定性。']});
+    const {cases}=normalizeCanonical(document);expect(cases[0].profile.birth).toMatchObject({hour:12,timePrecision:precision,birthNotes:['仅说明原件出生时刻的不确定性。']});
+    document.cases[0].birth.birthNotes=[{answer:'PRIVATE'}];expect(()=>normalizeCanonical(document)).toThrow('birth.birthNotes');
+  }
+});

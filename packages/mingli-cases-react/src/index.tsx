@@ -11,6 +11,8 @@ export interface CaseReference {
   sourceRevision: string;
   collectionId: string;
   mode: 'reference';
+  /** True only after the user revealed and explicitly included answers. */
+  includesAnswers?: boolean;
 }
 export interface MingliCaseLibraryProps {
   /** 调用方只在用户打开入口且模式允许时挂载此组件。请传稳定的模块级函数。 */
@@ -20,7 +22,7 @@ export interface MingliCaseLibraryProps {
   title?: string;
 }
 const answerLabels: Record<string, string> = {official:'官方公布', secondary:'转载答案', unspecified:'来源未注明'};
-const precisionLabels: Record<string, string> = {minute:'原文有钟点', branch:'原文仅给时辰（钟点为中点）', 'approximate-clock':'近似钟点', unknown:'时间精度未明'};
+const precisionLabels: Record<string, string> = {minute:'原文有钟点', branch:'原文仅给时辰（钟点为中点）', 'approximate-clock':'近似钟点', 'interval-midpoint':'原文时间区间的中点', 'unverified-clock':'钟点未核实', placeholder:'占位钟点（真实时刻未知）', unknown:'时间精度未明'};
 
 export function MingliCaseLibrary({loadLibrary, onReferenceChange, preferredChart = 'bazi', title = '命例库'}: MingliCaseLibraryProps) {
   const [api, setApi] = useState<CorpusApi>();
@@ -89,16 +91,17 @@ export function MingliCaseLibrary({loadLibrary, onReferenceChange, preferredChar
     catch (cause) {if (session.current.isCurrent(request)) setError(String(cause instanceof Error ? cause.message : cause));}
     finally {if (session.current.isCurrent(request)) setBusy('');}
   }
-  async function selectReference() {
-    if (!api || !study) return;
-    const request = generation.current; setBusy('reference'); setError('');
+  function hideAnswers() {
+    setAnswers(undefined);
+    if (reference?.includesAnswers) { clearReference(); setStatus('已隐藏答案并撤回含答案的 AI 参考。'); }
+  }
+  function selectReference(includeAnswers = false) {
+    if (!api || !study || (includeAnswers && !answers)) return;
+    setError('');
     try {
-      const value = answers ?? await api.loadCaseAnswers(study.meta.id);
-      if (!session.current.isCurrent(request)) return;
-      const next: CaseReference = {caseId:study.meta.id, title:study.meta.title, text:api.buildCasePrompt(study, {mode:'reference', answers:value}), sourceUrl:study.provenance.sourceUrl, sourceRevision:study.provenance.revision, collectionId:study.meta.collectionId, mode:'reference'};
-      setReference(next); referenceCallback.current?.(next); setStatus('已选为独立命例参考；不会替换当前命盘的出生资料。');
-    } catch (cause) {if (session.current.isCurrent(request)) setError(String(cause instanceof Error ? cause.message : cause));}
-    finally {if (session.current.isCurrent(request)) setBusy('');}
+      const next: CaseReference = {caseId:study.meta.id, title:study.meta.title, text:api.buildCasePrompt(study, {mode:'reference', ...(includeAnswers ? {answers} : {})}), sourceUrl:study.provenance.sourceUrl, sourceRevision:study.provenance.revision, collectionId:study.meta.collectionId, mode:'reference', includesAnswers:includeAnswers};
+      setReference(next); referenceCallback.current?.(next); setStatus(includeAnswers ? '已选为独立命例参考（含已揭晓答案）；不会替换当前命盘的出生资料。' : '已选为独立命例参考（不含答案）；不会替换当前命盘的出生资料。');
+    } catch (cause) {setError(String(cause instanceof Error ? cause.message : cause));}
   }
   async function showCharts() {
     if (!api || !study) return;
@@ -145,13 +148,14 @@ export function MingliCaseLibrary({loadLibrary, onReferenceChange, preferredChar
           {study && birth && <>
             <h3>{study.meta.title}</h3>
             <div className="ml-tags"><span className="ml-tag">{methodName(study.meta.method)}</span>{study.meta.topics.map(item=><span className="ml-tag" key={item}>{topicName(item)}</span>)}<span className="ml-tag">答案：{answerLabels[study.meta.answerSource] ?? study.meta.answerSource}</span></div>
-            <div className="ml-birth"><span>{birthDate(birth.year,birth.month,birth.day)} · {birthClock(birth.hour,birth.minute)}</span><span>{study.profile.gender==='male'?'男':study.profile.gender==='female'?'女':'性别未注明'} · {birth.place ?? '出生地未注明'}</span><span>{precisionLabels[birth.timePrecision] ?? birth.timePrecision}{birth.timeRaw ? ` · 原文：${birth.timeRaw}` : ''}</span><span>时区：{birth.timezone ?? '未提供'}{birth.utcOffset ? `（UTC${birth.utcOffset}）` : ''}</span><span>夏令时：{birth.dst===null?'未注明':birth.dst?'是':'否'}</span></div>
+            <div className="ml-birth"><span>{birthDate(birth.year,birth.month,birth.day)} · {birthClock(birth.hour,birth.minute,birth.timePrecision)}</span><span>{study.profile.gender==='male'?'男':study.profile.gender==='female'?'女':'性别未注明'} · {birth.place ?? '出生地未注明'}</span><span>{precisionLabels[birth.timePrecision] ?? birth.timePrecision}{birth.timeRaw ? ` · 原文：${birth.timeRaw}` : ''}</span><span>时区：{birth.timezone ?? '未提供'}{birth.utcOffset ? `（UTC${birth.utcOffset}）` : ''}</span><span>夏令时：{birth.dst===null?'未注明':birth.dst?'是':'否'}</span></div>
+            {!!birth.birthNotes?.length && <div className="ml-birth-notes"><strong>出生资料注记</strong>{birth.birthNotes.map((note,index)=><p key={index}>{note}</p>)}</div>}
             {birth.raw && <details><summary>出生资料原文</summary><p>{birth.raw}</p></details>}
             {study.context.length>0 && <details open><summary>题目已知条件</summary>{study.context.map((text,index)=><p key={index}>{text}</p>)}</details>}
             <div className="ml-actions">
               <button type="button" onClick={()=>void copyPractice()}>复制练习提示词</button>
-              <button type="button" disabled={!!busy} onClick={()=>answers ? setAnswers(undefined) : void revealAnswers()}>{answers?'隐藏答案':'揭晓答案'}</button>
-              {onReferenceChange && <button type="button" disabled={!!busy} onClick={()=>void selectReference()}>用于 AI 参考{study.questions.length > 0 ? '（含已有答案）' : ''}</button>}
+              <button type="button" disabled={!!busy} onClick={()=>answers ? hideAnswers() : void revealAnswers()}>{answers?'隐藏答案':'揭晓答案'}</button>
+              {onReferenceChange && <><button type="button" disabled={!!busy} onClick={()=>selectReference()}>用于 AI 参考（不含答案）</button><button type="button" disabled={!!busy || !answers} onClick={()=>selectReference(true)}>用于 AI 参考（含已揭晓答案）</button></>}
               {study.meta.hasReferenceCharts && <button type="button" disabled={!!busy} onClick={()=>charts ? setCharts(undefined) : void showCharts()}>{charts?'收起预排盘':'查看上游预排盘'}</button>}
             </div>
             {charts && <div><p><strong>上游预排盘</strong> · {charts.defaultTimeConvention} · {charts.conventions.dayRollover}</p><small>{charts.conventions.note}</small>{birth.hour===null && <p>原资料没有出生时辰。上游盘中的占位钟点及相关推算不能当作准确出生时刻；请保留原盘备注。</p>}<label>预排盘类型<select aria-label="预排盘类型" value={chartKind} onChange={event=>setChartKind(event.target.value as 'bazi'|'ziwei')}><option value="bazi">八字</option><option value="ziwei">紫微斗数</option></select></label><p>引擎：{charts.engine[chartKind]}</p><pre>{charts[chartKind] ? JSON.stringify(charts[chartKind],null,2) : '该例没有此类预排盘。'}</pre></div>}

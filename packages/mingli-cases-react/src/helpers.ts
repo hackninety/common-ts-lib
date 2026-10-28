@@ -20,9 +20,11 @@ export function safeSourceUrl(value: string): string | undefined {
   catch { return undefined; }
 }
 
-export function birthClock(hour: number | null, minute: number | null): string {
+export function birthClock(hour: number | null, minute: number | null, precision?: string): string {
   if (hour === null) return '时辰未提供';
-  return `${String(hour).padStart(2, '0')}:${minute === null ? '??' : String(minute).padStart(2, '0')}`;
+  const value = `${String(hour).padStart(2, '0')}:${minute === null ? '??' : String(minute).padStart(2, '0')}`;
+  const suffix = precision === 'unverified-clock' ? '（未核实）' : precision === 'placeholder' ? '（占位）' : precision === 'interval-midpoint' ? '（区间中点）' : '';
+  return value + suffix;
 }
 
 export function birthDate(year: number | null, month: number | null, day: number | null): string {

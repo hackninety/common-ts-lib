@@ -17,6 +17,7 @@ export interface CaseStudy {
   meta: CaseIndex;
   profile: { gender: string; birth: {
     year: number | null; month: number | null; day: number | null; hour: number | null; minute: number | null;
+    birthNotes?: string[];
     place: string | null; timeRaw: string | null; raw: string | null; timePrecision: string;
     timezone: string | null; utcOffset: string | null; dst: boolean | null;
   } };

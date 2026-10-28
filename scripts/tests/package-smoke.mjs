@@ -62,6 +62,8 @@ switch (pkg.name) {
     const baziqa = index.filter(item => item.sourceId === 'baziqa');
     assert.equal(baziqa.length, 167);
     assert.equal(baziqa.reduce((sum, item) => sum + item.questionCount, 0), 1043);
+    assert.equal(baziqa.filter(item => item.timePrecision === 'unverified-clock').length, 44);
+    assert.equal(baziqa.filter(item => item.timePrecision === 'interval-midpoint').length, 4);
     let questionCount = 0;
     let chartsCount = 0;
     let baziCharts = 0;
@@ -79,6 +81,11 @@ switch (pkg.name) {
       }
       if (item.sourceId === 'baziqa') assert.equal(answers?.answers.length, study.questions.length);
       const practice = entry.buildCasePrompt(study);
+      if (['unverified-clock', 'interval-midpoint'].includes(item.timePrecision)) {
+        assert(study.profile.birth.birthNotes.length > 0, 'Birth uncertainty must be public before reveal');
+        assert(practice.includes(item.timePrecision === 'unverified-clock' ? '不能当作准确出生时刻' : '不能当作精确出生分钟'));
+      }
+      assert(!entry.buildCasePrompt(study, {mode:'reference'}).includes('显式揭晓的原资料答案'), 'Default reference omits answers');
       assert.equal(entry.buildCasePrompt(study, {mode:'practice', answers}), practice, 'Practice ignores supplied answers');
       assert(entry.buildCasePrompt(study, {mode:'reference', answers}).length > 0);
       if (item.hasReferenceCharts) {

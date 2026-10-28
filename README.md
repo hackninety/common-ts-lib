@@ -5,8 +5,8 @@
 | 包 | 版本 | 内容 | 许可 |
 | --- | --- | --- | --- |
 | [lrdq-ts-lib](packages/lrdq-ts-lib) | 0.11.0 | 六壬典籍、毕法、课体与占例 | CC-BY-NC-4.0 |
-| [mingli-cases-ts-lib](packages/mingli-cases-ts-lib) | 0.1.0 | 可扩展命例库；首批 BaziQA 比赛真题与名人案例，按来源/资料集/年份/原术数/题材归类 | 代码 MIT；原题权利见包内说明 |
-| [mingli-cases-react](packages/mingli-cases-react) | 0.1.0 | React 18/19 共用命例浏览、练习与 AI 参考面板 | MIT |
+| [mingli-cases-ts-lib](packages/mingli-cases-ts-lib) | 0.1.1 | 可扩展命例库；首批 BaziQA 比赛真题与名人案例，按来源/资料集/年份/原术数/题材归类 | 代码 MIT；原题权利见包内说明 |
+| [mingli-cases-react](packages/mingli-cases-react) | 0.1.1 | React 18/19 共用命例浏览、练习与 AI 参考面板 | MIT |
 | [nhx-ts-lib](packages/nhx-ts-lib) | 0.1.1 | 倪海厦教学语料与检索 | CC-BY-NC-4.0 |
 | [qmdj-ts-lib](packages/qmdj-ts-lib) | 0.2.0 | 奇门典籍、克应与占目 | MIT（沿用原包声明） |
 | [shj-ts-lib](packages/shj-ts-lib) | 0.1.0 | 山海经文、实体、地理与古图 | MIT |

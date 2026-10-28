@@ -51,9 +51,10 @@ export function normalizeCanonical(input) {
     assert(b.hour !== null || b.minute === null, 'A missing birth hour cannot have a known minute');
     for (const key of ['place', 'timeRaw', 'raw', 'timezone', 'utcOffset']) nullableText(b[key], `birth.${key}`);
     for (const key of ['approximate', 'dst']) assert(b[key] === null || typeof b[key] === 'boolean', `birth.${key} must be boolean or null`);
-    enumValue(b.timePrecision, ['minute', 'branch', 'approximate-clock', 'unknown'], 'birth.timePrecision');
+    enumValue(b.timePrecision, ['minute', 'branch', 'approximate-clock', 'interval-midpoint', 'unverified-clock', 'placeholder', 'unknown'], 'birth.timePrecision');
     assert(b.hour !== null || b.timePrecision === 'unknown', 'Missing birth hour must have unknown precision');
     const birth = Object.fromEntries(['year', 'month', 'day', 'hour', 'minute', 'place', 'approximate', 'timeRaw', 'raw', 'timePrecision', 'timezone', 'utcOffset', 'dst'].map((key) => [key, b[key]]));
+    if (b.birthNotes !== undefined) { stringList(b.birthNotes, 'birth.birthNotes'); birth.birthNotes = [...b.birthNotes]; }
     const provenance = {
       sourceUrl: source.url, revision: source.revision, rawPath: collection.rawPath,
       questionSources: collection.questionSources,

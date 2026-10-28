@@ -44,6 +44,9 @@ describe('pinned source and normalized corpus', () => {
         expect(study?.answerVisibility).toBe('hidden');
         expect(answers?.answerVisibility).toBe('included');
         expect(study?.profile.birth.raw).toBe(person.profile.birth.raw ?? null);
+        expect(study?.profile.birth.hour).toBe(person.profile.birth.hour ?? null);
+        expect(study?.profile.birth.minute).toBe(person.profile.birth.minute ?? null);
+        expect(answers?.notes).toEqual(person.notes ?? []);
         expect(study?.context).toEqual(person.context ?? []);
         expect(study?.meta.methodRaw).toBe(person.setter?.method ?? null);
         expect(JSON.stringify(study)).not.toMatch(forbiddenPracticeFields);
@@ -239,4 +242,23 @@ describe('practice/reveal boundary', () => {
       rmSync(fixture, { recursive: true, force: true });
     }
   }, 20000);
+});
+
+
+describe('public birth provenance and precision',()=>{
+  it('marks exactly the 44 unverified celebrity noon values without changing source values or ordinary noon cases',async()=>{
+    const noon=getCaseIndex({sourceId:'baziqa'}).filter(item=>item.timePrecision==='unverified-clock');expect(noon).toHaveLength(44);
+    for(const item of noon){expect(item.collectionId).toBe('celebrity50_zh');const study=(await loadCase(item.id))!;expect(study.profile.birth).toMatchObject({hour:12,minute:0,approximate:false});expect(study.profile.birth.birthNotes?.join('')).toContain('本库精度审计');expect(buildCasePrompt(study)).toContain('不能当作准确出生时刻');}
+    const ordinary=(await loadCase('baziqa/hkjfma_2015/2015_C2_female_19570104'))!;expect(ordinary.profile.birth.timePrecision).not.toBe('unverified-clock');
+  });
+  it('exposes reviewed birth notes and four interval midpoints without revealing original general notes',async()=>{
+    const intervals=getCaseIndex({sourceId:'baziqa'}).filter(item=>item.timePrecision==='interval-midpoint');expect(intervals).toHaveLength(4);
+    for(const item of intervals){const study=(await loadCase(item.id))!;expect(study.profile.birth.birthNotes?.join('')).toContain('区间中点');expect(buildCasePrompt(study)).toContain('不能当作精确出生分钟');expect(buildCasePrompt(study,{mode:'reference'})).toContain('区间中点');}
+    const us=(await loadCase('baziqa/contest8_2022/male_19740428_P017'))!;expect(buildCasePrompt(us)).toContain('未写州或时区');
+    const hk=(await loadCase('baziqa/hkjfma_2012/2012_C1_female_19791005'))!;expect(hk.profile.birth.birthNotes).toEqual(['出生地原文未写。']);expect(hk.profile.birth.birthNotes?.join('')).not.toContain('平均一个月收入');
+    const method=(await loadCase('baziqa/contest8_2026/2026_C7_female_19990814'))!;expect(method.profile.birth.birthNotes).toEqual([]);
+    const unclear=(await loadCase('baziqa/hkjfma_2018/2018_C5_female_19401013'))!;expect(unclear.profile.birth.birthNotes?.join('')).toContain('ziweicn.com/show/3487.html');expect(unclear.profile.birth.birthNotes?.join('')).not.toContain('Q25');
+    const answer=(await loadCaseAnswers(unclear.meta.id))!;expect(answer.notes.join('')).toContain('Q25');
+    expect(buildCasePrompt(unclear,{mode:'practice',answers:answer})).not.toContain('上游整理者备注');
+  });
 });

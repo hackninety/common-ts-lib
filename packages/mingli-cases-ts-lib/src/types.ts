@@ -3,7 +3,7 @@ export type MethodId = 'bazi' | 'ziwei' | 'qimen' | 'unknown';
 export type TopicId = 'relationship' | 'wealth' | 'family' | 'career' | 'health' | 'education' | 'timing' | 'unknown';
 export type AnswerSource = 'official' | 'secondary' | 'unspecified';
 export type Gender = 'male' | 'female' | 'unknown';
-export type TimePrecision = 'minute' | 'branch' | 'approximate-clock' | 'unknown';
+export type TimePrecision = 'minute' | 'branch' | 'approximate-clock' | 'interval-midpoint' | 'unverified-clock' | 'placeholder' | 'unknown';
 export type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
 
 export interface SourceMeta {
@@ -58,6 +58,8 @@ export interface BirthRecord {
   hour: number | null;
   minute: number | null;
   place: string | null;
+  /** Public birth/time provenance only; never answers or known events. */
+  birthNotes?: string[];
   /** null means upstream does not specify; a branch midpoint is never exact clock time. */
   approximate: boolean | null;
   timeRaw: string | null;

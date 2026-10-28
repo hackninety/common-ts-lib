@@ -28,3 +28,9 @@ BaziQA 主题由题干关键词推导，`topicOrigin` 明示这个来源；规�
 新增自整理或古籍案例可直接把规范化 JSON 放入 `data/collections/` 自动注册；完整模板为 `docs/templates/canonical-collection.json`，注册和校验说明见 [data/collections/README.md](data/collections/README.md)。支持人工主题、只有四柱而没有公历年月日的资料，以及 `questions: []` 的叙述案例；事验与原注仍只放在显式揭晓的数据中。模板是虚构示例，默认不计入真实案例数。
 
 许可证必须分别理解：库代码及上游转写/元数据采用 MIT；比赛题目原文版权仍归香港青年術數家協會及各出题老师。上游以研究用途收录，商业使用题目原文须联系主办方。完整说明见 LICENSE 与 NOTICE。
+
+## 0.1.1 出生精度与公开注记
+
+可选的 birth.birthNotes 仅保存经审核的出生、时间和出处说明，可在练习前显示；答案、已知生平和原始完整 notes 仍只由 loadCaseAnswers 揭晓。原件与其哈希不变。4 例时间区间中点标为 interval-midpoint；44 例 Celebrity50 的 12:00 标为 unverified-clock（钟点未核实），这是本库审计标注，并非上游声明这些时间一定是占位。原 hour/minute/raw/approximate 均保留。placeholder 仅供来源明确为占位的新增资料使用。不得由上述钟点推断精确出生分钟或确定时柱。
+
+reference 模式本身不读取答案；只有调用方显式传入 answers 时才包含答案。practice 模式即使误传 answers 也会忽略它们。
