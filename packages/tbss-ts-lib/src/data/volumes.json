@@ -1,0 +1,100 @@
+{
+ "volumes": [
+  {
+   "slug": "zi",
+   "branch": "子",
+   "name": "子集",
+   "start": 1001,
+   "end": 2000,
+   "count": 1000
+  },
+  {
+   "slug": "chou",
+   "branch": "丑",
+   "name": "丑集",
+   "start": 2001,
+   "end": 3000,
+   "count": 1000
+  },
+  {
+   "slug": "yin",
+   "branch": "寅",
+   "name": "寅集",
+   "start": 3001,
+   "end": 4000,
+   "count": 1000
+  },
+  {
+   "slug": "mao",
+   "branch": "卯",
+   "name": "卯集",
+   "start": 4001,
+   "end": 5000,
+   "count": 1000
+  },
+  {
+   "slug": "chen",
+   "branch": "辰",
+   "name": "辰集",
+   "start": 5001,
+   "end": 6000,
+   "count": 1000
+  },
+  {
+   "slug": "si",
+   "branch": "巳",
+   "name": "巳集",
+   "start": 6001,
+   "end": 7000,
+   "count": 1000
+  },
+  {
+   "slug": "wu",
+   "branch": "午",
+   "name": "午集",
+   "start": 7001,
+   "end": 8000,
+   "count": 1000
+  },
+  {
+   "slug": "wei",
+   "branch": "未",
+   "name": "未集",
+   "start": 8001,
+   "end": 9000,
+   "count": 1000
+  },
+  {
+   "slug": "shen",
+   "branch": "申",
+   "name": "申集",
+   "start": 9001,
+   "end": 10000,
+   "count": 1000
+  },
+  {
+   "slug": "you",
+   "branch": "酉",
+   "name": "酉集",
+   "start": 10001,
+   "end": 11000,
+   "count": 1000
+  },
+  {
+   "slug": "xu",
+   "branch": "戌",
+   "name": "戌集",
+   "start": 11001,
+   "end": 12000,
+   "count": 1000
+  },
+  {
+   "slug": "hai",
+   "branch": "亥",
+   "name": "亥集",
+   "start": 12001,
+   "end": 13000,
+   "count": 1000
+  }
+ ]
+}
