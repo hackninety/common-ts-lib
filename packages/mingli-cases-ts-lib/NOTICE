@@ -1,0 +1,19 @@
+BaziQA snapshot: ChenJiangxi/BaziQA
+Revision: 3bad3deaa5aa3a191c9c68b4d8b17f46decff45e (upstream data version v2.3.0)
+Repository: https://github.com/ChenJiangxi/BaziQA
+Authors: Jiangxi Chen and Qian Liu
+
+The library code and BaziQA transcription, metadata and code use MIT terms.
+This does not relicense the underlying contest questions. Their copyright
+remains with 香港青年術數家協會 and the individual question setters. Upstream
+includes them for academic research; commercial use of the question text
+requires contacting the organizer. Preserve original source attribution.
+
+Celebrity50 has upstream answer keys and biographical claims but no per-event
+source citations. "unspecified" marks that missing provenance; these statements
+are not independently verified facts. Unknown original methods, times and time
+zones remain unknown. Reference charts retain the upstream engine versions and
+time conventions; this package does not generate a new chart.
+
+题目、已知经历和答案属于各自的独立命主。以案参照时不得把它们迁移为当前求测人的
+事实或预测。练习接口不含答案、名人生平或整理者备注；揭晓须显式调用独立接口。

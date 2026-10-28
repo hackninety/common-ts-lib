@@ -1,0 +1,21 @@
+{
+  "name": "mingli-cases-react",
+  "version": "0.1.0",
+  "description": "共享命例浏览、练习与有来源的 AI 参考面板",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js", "default": "./dist/index.js" } },
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": false,
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/hackninety/common-ts-lib.git", "directory": "packages/mingli-cases-react" },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": { "react": "^18.2.0 || ^19.0.0" },
+  "devDependencies": { "@types/react": "^19.2.0", "@types/react-dom": "^19.2.0", "react": "^19.2.0", "react-dom": "^19.2.0", "typescript": "~5.9.3", "vitest": "^3.2.4" }
+}

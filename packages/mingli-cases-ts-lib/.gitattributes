@@ -1,0 +1,2 @@
+# Upstream snapshots are exact Git blob bytes; preserve original line endings and whitespace.
+docs/upstream/** -text -whitespace

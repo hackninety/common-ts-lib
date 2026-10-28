@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "id": "example-source",
+    "title": "虚构接口示例（导入前替换）",
+    "url": "https://example.invalid/cases",
+    "revision": "example-v1",
+    "license": {
+      "code": "not-applicable-example",
+      "content": "这不是实际命例或已获授权的来源，请填写真实内容授权范围。",
+      "notice": "示例不进入正式题库，未知权利不能自行声明为MIT。"
+    },
+    "attribution": "仅用于演示规范化数据结构",
+    "snapshotPath": "docs/upstream/example-source/snapshot.json"
+  },
+  "collection": {
+    "id": "example-collection",
+    "title": "只有四柱原文的叙述案例格式示例",
+    "kind": "curated",
+    "year": null,
+    "answerSource": "unspecified",
+    "rawPath": "examples/person-001.txt",
+    "questionSources": [],
+    "answerSources": [],
+    "scoring": null
+  },
+  "cases": [
+    {
+      "personId": "person-001",
+      "title": "虚构古籍格式示例人物",
+      "gender": "unknown",
+      "method": "bazi",
+      "methodRaw": "四柱八字（格式示例，非古籍引文）",
+      "birth": {
+        "year": null,
+        "month": null,
+        "day": null,
+        "hour": null,
+        "minute": null,
+        "place": null,
+        "approximate": null,
+        "timeRaw": null,
+        "raw": "甲子年 丙寅月 戊辰日 庚申时（仅为格式示例，不是古籍原文或真实命例；未记载公历日期）",
+        "timePrecision": "unknown",
+        "timezone": null,
+        "utcOffset": null,
+        "dst": null
+      },
+      "topics": ["career"],
+      "topicOrigin": "manual",
+      "context": ["这是无选择题的叙述案例模板。这里只放允许题前查看的资料。"],
+      "documentUrl": "https://example.invalid/cases/person-001",
+      "questions": [],
+      "answerData": {
+        "answers": [],
+        "knownEvents": { "事业": ["虚构事验示例：此段须显式揭晓后才显示或用于参考。"] },
+        "notes": ["虚构原注示例。导入前必须替换为实际有出处且可使用的记录。"]
+      }
+    }
+  ]
+}

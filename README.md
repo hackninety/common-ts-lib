@@ -1,10 +1,12 @@
 # common-ts-lib
 
-六个独立 TypeScript 库的统一源码仓库。各包保留原包名、版本、公开接口、子路径入口和许可，根目录不发布为 npm 包。
+独立 TypeScript 库与配套组件的统一源码仓库。各包保留自己的包名、版本、公开接口、子路径入口和许可，根目录不发布为 npm 包。
 
 | 包 | 版本 | 内容 | 许可 |
 | --- | --- | --- | --- |
 | [lrdq-ts-lib](packages/lrdq-ts-lib) | 0.11.0 | 六壬典籍、毕法、课体与占例 | CC-BY-NC-4.0 |
+| [mingli-cases-ts-lib](packages/mingli-cases-ts-lib) | 0.1.0 | 可扩展命例库；首批 BaziQA 比赛真题与名人案例，按来源/资料集/年份/原术数/题材归类 | 代码 MIT；原题权利见包内说明 |
+| [mingli-cases-react](packages/mingli-cases-react) | 0.1.0 | React 18/19 共用命例浏览、练习与 AI 参考面板 | MIT |
 | [nhx-ts-lib](packages/nhx-ts-lib) | 0.1.1 | 倪海厦教学语料与检索 | CC-BY-NC-4.0 |
 | [qmdj-ts-lib](packages/qmdj-ts-lib) | 0.2.0 | 奇门典籍、克应与占目 | MIT（沿用原包声明） |
 | [shj-ts-lib](packages/shj-ts-lib) | 0.1.0 | 山海经文、实体、地理与古图 | MIT |
@@ -67,6 +69,14 @@ pnpm verify:packages qmdj-ts-lib
 CI 对主分支和 Pull Request 执行类型检查、构建、测试、打包与隔离安装验证。
 
 ## 迁移与许可
+
+### 命例资料
+
+`mingli-cases-ts-lib` 将题目、答案/已知生平、上游预排盘拆为独立懒加载载荷；轻量索引不包含答案。BaziQA 固定上游提交的原始文件、来源说明与许可保留在该包 `docs/upstream/`，增加其他命例来源的方法见包内 README。未知的术数、时辰、时区保持未知，预排盘仅作为带口径说明的上游参考。
+
+`react-8char` 和 `react-iztro` 提供常驻命例库入口，展开才加载；`react-liuren`、`react-qimen`、`react-tieban` 必须显式开启算命模式并展开入口才加载。关闭模式或更换当前命盘会清除参考。命例不会覆盖当前出生资料，其已知经历只在用户明确选取时作为单独的 AI 参考资料。
+
+### 原六库迁移
 
 迁移来源、保留的提交和前端对应关系见 [MIGRATION.md](MIGRATION.md)。六个原库的历史通过 subtree merge 导入，历史提交哈希保留。原来的独立仓库与本机目录保留作为迁移备份；后续维护以本仓库为准。
 

@@ -10,6 +10,8 @@ on:
         options:
           - all
           - lrdq-ts-lib
+          - mingli-cases-ts-lib
+          - mingli-cases-react
           - nhx-ts-lib
           - qmdj-ts-lib
           - shj-ts-lib

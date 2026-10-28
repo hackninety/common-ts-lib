@@ -1,0 +1,25 @@
+{
+  "name": "mingli-cases-ts-lib",
+  "version": "0.1.0",
+  "description": "可追溯、保留出生精度的命理案例与题库：轻量索引、练习与答案分包、上游参考盘",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js", "default": "./dist/index.js" },
+    "./prompt": { "types": "./dist/prompt.d.ts", "import": "./dist/prompt.js", "default": "./dist/prompt.js" }
+  },
+  "files": ["dist", "README.md", "INTEGRATION.md", "LICENSE", "NOTICE", "docs/sources.md"],
+  "scripts": {
+    "import:baziqa": "node scripts/import-baziqa.mjs",
+    "gen": "node scripts/gen-data.mjs",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "prepack": "npm run build"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": { "type": "git", "url": "https://github.com/hackninety/common-ts-lib.git", "directory": "packages/mingli-cases-ts-lib" },
+  "devDependencies": { "@types/node": "^25.5.0", "typescript": "^5.9.3", "vitest": "^3.0.0" }
+}

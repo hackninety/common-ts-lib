@@ -48,6 +48,62 @@ async function checkDocs(api) {
 }
 
 switch (pkg.name) {
+  case 'mingli-cases-react': {
+    assert.equal(typeof entry.MingliCaseLibrary, 'function');
+    const code = await readFile(join(directory, 'dist/index.js'), 'utf8');
+    assert(!/from\s*['"]mingli-cases-ts-lib/.test(code), 'UI package must not eagerly import the corpus');
+    counts.sharedReactPanels = 1;
+    break;
+  }
+  case 'mingli-cases-ts-lib': {
+    const index = entry.getCaseIndex();
+    assert.equal(index.length, entry.getStats().cases);
+    assert.equal(new Set(index.map(item => item.id)).size, index.length);
+    const baziqa = index.filter(item => item.sourceId === 'baziqa');
+    assert.equal(baziqa.length, 167);
+    assert.equal(baziqa.reduce((sum, item) => sum + item.questionCount, 0), 1043);
+    let questionCount = 0;
+    let chartsCount = 0;
+    let baziCharts = 0;
+    let ziweiCharts = 0;
+    let baziqaCharts = 0;
+    for (const item of index) {
+      const study = await entry.loadCase(item.id);
+      assert(study && study.meta.id === item.id);
+      assert(!('answers' in study) && !('knownEvents' in study));
+      assert(study.questions.every(question => !('answer' in question) && !('acceptedAnswers' in question)));
+      const answers = await entry.loadCaseAnswers(item.id);
+      if (answers) {
+        assert.equal(answers.caseId, item.id);
+        assert(answers.answers.every(answer => study.questions.some(question => question.id === answer.questionId)));
+      }
+      if (item.sourceId === 'baziqa') assert.equal(answers?.answers.length, study.questions.length);
+      const practice = entry.buildCasePrompt(study);
+      assert.equal(entry.buildCasePrompt(study, {mode:'practice', answers}), practice, 'Practice ignores supplied answers');
+      assert(entry.buildCasePrompt(study, {mode:'reference', answers}).length > 0);
+      if (item.hasReferenceCharts) {
+        const charts = await entry.loadReferenceCharts(item.id);
+        assert(charts?.bazi || charts?.ziwei);
+        if (item.sourceId === 'baziqa') {
+          baziqaCharts++;
+          if (charts.bazi) baziCharts++;
+          if (charts.ziwei) ziweiCharts++;
+          if (study.profile.birth.hour === null) assert.equal(charts.ziwei, null, 'Missing birth hour must not become a fabricated Zi Wei chart');
+        }
+        chartsCount++;
+      }
+      questionCount += study.questions.length;
+    }
+    assert.equal(questionCount, entry.getStats().questions);
+    assert.equal(baziqaCharts, 117);
+    assert.equal(baziCharts, 117);
+    assert.equal(ziweiCharts, 116);
+    assert.equal(await entry.loadCase('missing/source/case'), undefined);
+    counts.cases = index.length;
+    counts.questions = questionCount;
+    counts.referenceCharts = chartsCount;
+    break;
+  }
   case 'lrdq-ts-lib': {
     assert.equal(entry.bifa.entries.length, 100);
     assert.equal(entry.getBifaEntry(1).no, 1);
