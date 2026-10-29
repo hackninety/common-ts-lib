@@ -13,6 +13,27 @@ const topicsOf = (values = ['unknown']) => {
   return [...new Set(values)];
 };
 
+/** 只校验明确给出的结构化信息；未知信息应保留在原文而不是猜补日期/时区。 */
+function validateBirthCalendar(birth, context) {
+  if ([birth.year, birth.month, birth.day].every(Number.isInteger)) {
+    const date = new Date(0);
+    date.setUTCFullYear(birth.year, birth.month - 1, birth.day);
+    assert(date.getUTCFullYear() === birth.year && date.getUTCMonth() + 1 === birth.month && date.getUTCDate() === birth.day,
+      `${context}: Invalid birth date ${birth.year}-${birth.month}-${birth.day}`);
+  }
+  if (birth.timezone !== null) {
+    // Intl 同时接受某些新式偏移字符串；此字段只放 IANA 名称，固定偏移另存 utcOffset。
+    assert(birth.timezone.length > 0 && !/^[+-]/.test(birth.timezone), `${context}: Invalid birth.timezone ${birth.timezone}`);
+    try { new Intl.DateTimeFormat('en', { timeZone: birth.timezone }).format(0); }
+    catch { assert.fail(`${context}: Invalid birth.timezone ${birth.timezone}`); }
+  }
+  if (birth.utcOffset !== null) {
+    const offset = /^([+-])(\d{2}):(\d{2})$/.exec(birth.utcOffset);
+    assert(offset && Number(offset[3]) < 60 && Number(offset[2]) <= 14
+      && (Number(offset[2]) !== 14 || Number(offset[3]) === 0), `${context}: Invalid birth.utcOffset ${birth.utcOffset}; expected ±HH:mm within ±14:00`);
+  }
+}
+
 /** Canonical user/source collections need no source-specific code or UI change. */
 export function normalizeCanonical(input) {
   assert.equal(input.schemaVersion, 1, 'Unsupported canonical schemaVersion');
@@ -50,6 +71,7 @@ export function normalizeCanonical(input) {
     for (const [key, max] of [['hour', 23], ['minute', 59]]) assert(b[key] === null || (Number.isInteger(b[key]) && b[key] >= 0 && b[key] <= max), `Invalid birth.${key}`);
     assert(b.hour !== null || b.minute === null, 'A missing birth hour cannot have a known minute');
     for (const key of ['place', 'timeRaw', 'raw', 'timezone', 'utcOffset']) nullableText(b[key], `birth.${key}`);
+    validateBirthCalendar(b, `${source.id}/${collection.id}/${person.personId} (${collection.rawPath})`);
     for (const key of ['approximate', 'dst']) assert(b[key] === null || typeof b[key] === 'boolean', `birth.${key} must be boolean or null`);
     enumValue(b.timePrecision, ['minute', 'branch', 'approximate-clock', 'interval-midpoint', 'unverified-clock', 'placeholder', 'unknown'], 'birth.timePrecision');
     assert(b.hour !== null || b.timePrecision === 'unknown', 'Missing birth hour must have unknown precision');

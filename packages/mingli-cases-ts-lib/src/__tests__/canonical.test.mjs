@@ -60,3 +60,32 @@ it('accepts reviewed public birth provenance and distinguishes explicit placehol
     document.cases[0].birth.birthNotes=[{answer:'PRIVATE'}];expect(()=>normalizeCanonical(document)).toThrow('birth.birthNotes');
   }
 });
+
+it('拒绝不存在的完整公历日期，并在错误中指出来源、合集和人物', () => {
+  for (const [year, month, day] of [[2023, 2, 29], [2024, 2, 30], [1900, 2, 29], [2024, 4, 31], [1, 2, 29]]) {
+    const document = template();
+    Object.assign(document.cases[0].birth, { year, month, day });
+    expect(() => normalizeCanonical(document)).toThrow(/example-source\/example-collection\/person-001.*examples\/person-001.txt.*Invalid birth date/);
+  }
+  for (const [year, month, day] of [[2024, 2, 29], [2000, 2, 29], [4, 2, 29], [null, 2, 29], [2023, 2, null], [null, null, null]]) {
+    const document = template();
+    Object.assign(document.cases[0].birth, { year, month, day });
+    expect(normalizeCanonical(document).cases[0].profile.birth).toMatchObject({ year, month, day, hour: null });
+  }
+});
+
+it('时区与偏移只接受明确有效的值，不推断夏令时或替换原文', () => {
+  for (const timezone of ['Asia/Not_A_City', '', '+08:00', 'Asia/Shanghai ']) {
+    const document = template(); document.cases[0].birth.timezone = timezone;
+    expect(() => normalizeCanonical(document)).toThrow(/person-001.*Invalid birth.timezone/);
+  }
+  for (const utcOffset of ['+25:00', '+14:01', '-14:30', '+08:60', '8', 'UTC+8', '']) {
+    const document = template(); document.cases[0].birth.utcOffset = utcOffset;
+    expect(() => normalizeCanonical(document)).toThrow(/person-001.*Invalid birth.utcOffset/);
+  }
+  for (const [timezone, utcOffset] of [['Asia/Shanghai', '+08:00'], ['America/New_York', '-04:00'], ['UTC', '+00:00'], [null, '-14:00'], [null, '+14:00'], [null, null]]) {
+    const document = template(); Object.assign(document.cases[0].birth, { timezone, utcOffset });
+    const birth = normalizeCanonical(document).cases[0].profile.birth;
+    expect(birth).toMatchObject({ timezone, utcOffset, dst: null, raw: document.cases[0].birth.raw });
+  }
+});
