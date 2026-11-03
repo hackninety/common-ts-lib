@@ -1,0 +1,60 @@
+{
+  "name": "wiki-ts-lib",
+  "version": "0.1.0",
+  "description": "古籍参考文库：从 novel-wiki 现实参考材料库整理的 57 部典籍原文与古注（太平广记、夷坚志、聊斋志异、山海经、黄帝内经、道德经注、中论等），另附藏经楼 GPT／Gemini／Claude 译注层；按书分片懒加载，简繁等价检索 — Chinese classics reference corpus",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "INTEGRATION.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "gen": "node scripts/gen-data.mjs",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test test/*.test.mjs",
+    "verify:data": "node scripts/verify-data.mjs",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "古籍",
+    "典籍语料库",
+    "太平广记",
+    "聊斋志异",
+    "夷坚志",
+    "山海经",
+    "子不语",
+    "阅微草堂笔记",
+    "酉阳杂俎",
+    "中论",
+    "corpus",
+    "classics"
+  ],
+  "author": "hackninety",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.12.0",
+    "opencc-js": "1.4.2",
+    "typescript": "~5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackninety/common-ts-lib.git",
+    "directory": "packages/wiki-ts-lib"
+  }
+}

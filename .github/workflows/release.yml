@@ -16,6 +16,7 @@ on:
           - qmdj-ts-lib
           - shj-ts-lib
           - tbss-ts-lib
+          - wiki-ts-lib
           - zslj-ts-lib
 
 permissions:

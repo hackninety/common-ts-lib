@@ -247,6 +247,38 @@ switch (pkg.name) {
     counts.calendarChartCases = 1;
     break;
   }
+  case 'wiki-ts-lib': {
+    const catalog = entry.getCatalog();
+    const books = entry.getBooks();
+    assert.equal(books.length, catalog.totals.books);
+    assert(books.length >= 57);
+    // Reads every entry, so every gzip index and text shard is exercised after a standalone install.
+    await checkDocs(entry);
+    assert.equal(counts.documents, catalog.totals.entries);
+    let chars = 0;
+    for (const book of books) {
+      const entries = entry.getEntries(book.id);
+      assert.equal(entries.length, book.entryCount, book.id);
+      for (const meta of entries) {
+        const full = await entry.getEntry(book.id, meta.id);
+        assert.equal(full?.uri, `reference://${book.id}/${meta.id}`);
+        assert.equal(Array.from(full.content).length, meta.chars, `${book.id}/${meta.id}: chars differ from index`);
+        assert.equal(meta.layer === 'ai', Boolean(full.ai), `${book.id}/${meta.id}: ai layer flag`);
+        chars += meta.chars;
+      }
+    }
+    assert.equal(chars, catalog.totals.chars);
+    // Simplified and traditional queries must hit the same original-text entries.
+    const simplified = await entry.searchEntries('东王公', { book: 'taiping-guangji', scope: 'text' });
+    const traditional = await entry.searchEntries('東王公', { book: 'taiping-guangji', scope: 'text' });
+    assert(simplified.total > 0 && simplified.total === traditional.total);
+    assert((await entry.searchEntries('僧叡', { book: 'zhonglun', layer: 'ai' })).total > 0);
+    assert.equal(await entry.getEntry('zhonglun', '__missing__'), undefined);
+    counts.books = books.length;
+    counts.chars = chars;
+    counts.aiEntries = books.reduce((sum, book) => sum + book.layers.ai, 0);
+    break;
+  }
   default: throw new Error(`Add a package smoke check for ${pkg.name}`);
 }
 

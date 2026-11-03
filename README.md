@@ -11,6 +11,7 @@
 | [qmdj-ts-lib](packages/qmdj-ts-lib) | 0.2.0 | 奇门典籍、克应与占目 | MIT（沿用原包声明） |
 | [shj-ts-lib](packages/shj-ts-lib) | 0.1.0 | 山海经文、实体、地理与古图 | MIT |
 | [tbss-ts-lib](packages/tbss-ts-lib) | 0.1.0 | 铁板神数条文与取数表 | CC-BY-NC-4.0 |
+| [wiki-ts-lib](packages/wiki-ts-lib) | 0.1.0 | 57 部古籍原文与古注（志怪、子书、道经、佛典，自 novel-wiki 参考库整理），附藏经楼 AI 译注层 | 代码 MIT；原作公有领域，维基文库录入 CC-BY-SA-4.0，其余来源见各篇 |
 | [zslj-ts-lib](packages/zslj-ts-lib) | 0.1.1 | 占事略決排盘与典籍 | MIT |
 
 ## 开发
