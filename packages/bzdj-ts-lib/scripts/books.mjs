@@ -1,4 +1,5 @@
-// 书目配置：来源文件（react-8char/docs/kb 的文件名前缀）→ 书。篇目按 Markdown 的二级标题切分，
+// 书目配置：来源文件（react-8char/docs/kb 的文件名前缀）→ 书。书名只写书与版本，不带主题词：
+// 目录检索会比对书名，书名里的「性情」「十神」会让整本书的篇目都被命中。篇目按 Markdown 的二级标题切分，
 // split 里标 3 的文件按三级标题切分（二级标题记作卷名/大类）。
 export const CORPUS = {
   id: 'bzdj',
@@ -35,13 +36,13 @@ export const BOOKS = [
   },
   {
     id: 'yhzp', files: ['02-'], minEntries: 17,
-    title: '渊海子平（性情十神诸篇）', workTitle: '淵海子平', author: '徐子平法，唐锦池刊', dynasty: '宋／明', script: '简',
+    title: '渊海子平（节选）', workTitle: '淵海子平', author: '徐子平法，唐锦池刊', dynasty: '宋／明', script: '简',
     edition: '维基文库简体整理本，节选', sourceUrl: `${WS}淵海子平`,
     summary: '节选十七节：论性情（含干支体象诗）、论疾病、论小儿、十神诸篇（伤官、食神、正财、正官、七杀、印绶、倒食、劫财、阳刃、日刃）与相心赋。',
   },
   {
     id: 'smth', files: ['03-'], minEntries: 18,
-    title: '三命通会（性情十神诸论）', workTitle: '三命通會', author: '万民英', dynasty: '明', script: '简',
+    title: '三命通会（节选）', workTitle: '三命通會', author: '万民英', dynasty: '明', script: '简',
     edition: '维基文库简体整理本，节选；论性情相貌并录四库全书本（繁体无标点）', sourceUrl: `${WS}三命通會`,
     summary: '节选卷七论性情相貌、论疾病、论小儿，卷五卷六十神诸论（正官、偏官、正财、偏财、印绶、倒食、伤官、食神、阳刃、建禄），卷三驿马、学堂词馆、羊刃。',
   },
