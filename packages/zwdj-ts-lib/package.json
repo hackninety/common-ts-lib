@@ -1,0 +1,58 @@
+{
+  "name": "zwdj-ts-lib",
+  "version": "0.1.0",
+  "description": "紫微斗数典籍原文库：《紫微斗数全书》卷一赋文二十篇（骨髓赋、太微赋、形性赋、诸星问答论等）、卷二安星诀与诸星入十二宫断语、卷三谈星要论等二十篇；按书懒加载，简繁等价检索 — Zi Wei Dou Shu classics corpus",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "INTEGRATION.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "gen": "node scripts/gen-data.mjs",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "紫微斗数",
+    "紫微斗數全書",
+    "骨髓赋",
+    "太微赋",
+    "诸星问答论",
+    "安星诀",
+    "典籍语料库",
+    "古籍",
+    "ziwei",
+    "corpus",
+    "classics"
+  ],
+  "author": "hackninety",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.12.0",
+    "opencc-js": "1.4.2",
+    "typescript": "~5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackninety/common-ts-lib.git",
+    "directory": "packages/zwdj-ts-lib"
+  }
+}

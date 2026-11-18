@@ -1,0 +1,59 @@
+{
+  "name": "bzdj-ts-lib",
+  "version": "0.1.0",
+  "description": "八字子平典籍原文库：《滴天髓》輯要本与任铁樵《滴天髓阐微》、《子平真诠》全文，《渊海子平》《三命通会》性情十神诸篇，《三命通会》六十日时断与卷十至十二诸赋；按书懒加载，简繁等价检索 — Bazi (Ziping) classics corpus",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "INTEGRATION.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "gen": "node scripts/gen-data.mjs",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "八字",
+    "子平",
+    "滴天髓",
+    "滴天髓阐微",
+    "子平真诠",
+    "渊海子平",
+    "三命通会",
+    "典籍语料库",
+    "古籍",
+    "bazi",
+    "corpus",
+    "classics"
+  ],
+  "author": "hackninety",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.12.0",
+    "opencc-js": "1.4.2",
+    "typescript": "~5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackninety/common-ts-lib.git",
+    "directory": "packages/bzdj-ts-lib"
+  }
+}

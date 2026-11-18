@@ -279,6 +279,40 @@ switch (pkg.name) {
     counts.aiEntries = books.reduce((sum, book) => sum + book.layers.ai, 0);
     break;
   }
+  case 'bzdj-ts-lib':
+  case 'zwdj-ts-lib': {
+    // 两包代码相同、数据各异：逐篇读正文，核对字数、书目篇数与总数，再验简繁等价检索。
+    const expected = pkg.name === 'bzdj-ts-lib'
+      ? { corpus: 'bzdj', system: 'bazi', books: 7, simplified: '伤官见官', traditional: '傷官見官' }
+      : { corpus: 'zwdj', system: 'ziwei', books: 3, simplified: '命无正曜', traditional: '命無正曜' };
+    const catalog = entry.getCatalog();
+    assert.equal(catalog.corpus, expected.corpus);
+    assert.equal(catalog.system, expected.system);
+    assert.match(catalog.origin.revision, /^[a-f0-9]{40}$/);
+    const books = entry.getBooks();
+    assert.equal(books.length, expected.books);
+    assert.equal(books.length, catalog.totals.books);
+    await checkDocs(entry);
+    assert.equal(counts.documents, catalog.totals.entries);
+    let chars = 0;
+    for (const book of books) {
+      const entries = entry.getEntries(book.id);
+      assert.equal(entries.length, book.entryCount, book.id);
+      for (const meta of entries) {
+        const full = await entry.getEntry(book.id, meta.id);
+        assert.equal(Array.from(full.content).length, meta.chars, `${book.id}/${meta.id}: chars differ from index`);
+        chars += meta.chars;
+      }
+    }
+    assert.equal(chars, catalog.totals.chars);
+    const simplified = await entry.searchEntries(expected.simplified, { scope: 'text' });
+    const traditional = await entry.searchEntries(expected.traditional, { scope: 'text' });
+    assert(simplified.total > 0 && simplified.total === traditional.total);
+    assert.equal(await entry.getEntry(books[0].id, '__missing__'), undefined);
+    counts.books = books.length;
+    counts.chars = chars;
+    break;
+  }
   default: throw new Error(`Add a package smoke check for ${pkg.name}`);
 }
 

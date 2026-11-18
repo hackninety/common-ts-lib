@@ -4,6 +4,7 @@
 
 | 包 | 版本 | 内容 | 许可 |
 | --- | --- | --- | --- |
+| [bzdj-ts-lib](packages/bzdj-ts-lib) | 0.1.0 | 八字子平典籍原文：滴天髓輯要本与阐微、子平真诠全文，渊海子平与三命通会性情十神诸篇、六十日时断、卷十至十二诸赋 | 代码 MIT；原著公有领域，维基文库录入 CC BY-SA 4.0 |
 | [lrdq-ts-lib](packages/lrdq-ts-lib) | 0.11.0 | 六壬典籍、毕法、课体与占例 | CC-BY-NC-4.0 |
 | [mingli-cases-ts-lib](packages/mingli-cases-ts-lib) | 0.1.1 | 可扩展命例库；首批 BaziQA 比赛真题与名人案例，按来源/资料集/年份/原术数/题材归类 | 代码 MIT；原题权利见包内说明 |
 | [mingli-cases-react](packages/mingli-cases-react) | 0.1.1 | React 18/19 共用命例浏览、练习与 AI 参考面板 | MIT |
@@ -12,6 +13,7 @@
 | [shj-ts-lib](packages/shj-ts-lib) | 0.1.0 | 山海经文、实体、地理与古图 | MIT |
 | [tbss-ts-lib](packages/tbss-ts-lib) | 0.1.0 | 铁板神数条文与取数表 | CC-BY-NC-4.0 |
 | [wiki-ts-lib](packages/wiki-ts-lib) | 0.1.0 | 57 部古籍原文与古注（志怪、子书、道经、佛典，自 novel-wiki 参考库整理），附藏经楼 AI 译注层 | 代码 MIT；原作公有领域，维基文库录入 CC-BY-SA-4.0，其余来源见各篇 |
+| [zwdj-ts-lib](packages/zwdj-ts-lib) | 0.1.0 | 紫微斗数典籍原文：《紫微斗数全书》卷一赋文、卷二安星诀与诸星入十二宫断语、卷三谈星要论等 | 代码 MIT；原著公有领域，维基文库录入 CC BY-SA 4.0 |
 | [zslj-ts-lib](packages/zslj-ts-lib) | 0.1.1 | 占事略決排盘与典籍 | MIT |
 
 ## 开发

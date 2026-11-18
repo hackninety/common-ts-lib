@@ -9,6 +9,7 @@ on:
         required: true
         options:
           - all
+          - bzdj-ts-lib
           - lrdq-ts-lib
           - mingli-cases-ts-lib
           - mingli-cases-react
@@ -17,6 +18,7 @@ on:
           - shj-ts-lib
           - tbss-ts-lib
           - wiki-ts-lib
+          - zwdj-ts-lib
           - zslj-ts-lib
 
 permissions:
